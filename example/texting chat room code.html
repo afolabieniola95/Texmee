@@ -1,0 +1,47 @@
+<form id="create-post-form" method="POST">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <button type="button" onclick="goBack()">←</button>
+    <span>Create Post</span>
+    <button type="submit">Post</button>
+  </div>
+
+  <!-- Profile + Audience -->
+  <div class="profile-audience">
+    <img src="profile.jpg" alt="Profile" class="profile-pic">
+    <div>
+      <div class="profile-name">John Doe</div>
+      <select id="audience" name="audience">
+        <option value="public">Public</option>
+        <option value="friends">Friends</option>
+        <option value="private">Only Me</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Editable Post Text (replaces textarea) -->
+  <div id="post-text" contenteditable="true"
+       placeholder="What's on your mind?"
+       style="min-height: 120px; padding: 10px; border-radius: 10px; background-repeat: no-repeat; background-position: center; background-size: cover; font-size: 16px; outline: none; border: none;">
+  </div>
+
+  <!-- Hidden input to capture post text -->
+  <input type="hidden" id="hidden-text" name="post-text">
+
+  <!-- Hidden input to capture background image -->
+  <input type="hidden" id="post-background" name="post-background">
+
+  <!-- Background Color/Image Options -->
+  <div class="background-options">
+    <button type="button" onclick="setBackgroundImage('background color/gainsboro.png')">Color 1</button>
+    <button type="button" onclick="setBackgroundImage('background color/blue.png')">Color 2</button>
+    <button type="button" onclick="clearBackground()">Clear</button>
+  </div>
+
+  <!-- Image Upload Preview -->
+  <div class="image-upload">
+    <input type="file" id="post-image" name="post-image" accept="image/*" onchange="previewImage(event)">
+    <img id="image-preview" src="" alt="Preview" style="display:none; width: 100px;">
+    <button type="button" onclick="removeImage()">Remove</button>
+  </div>
+</form>

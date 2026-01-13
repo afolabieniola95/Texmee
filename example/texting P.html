@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Create Post</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    textarea {
+      width: 100%; height: 150px;
+      background-size: cover; color: black;
+      padding: 10px; font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Create a Post</h2>
+
+  <textarea id="post-text" placeholder="Write something..."></textarea><br><br>
+
+  <label>Select Background:</label><br>
+  <button onclick="setBackground('image/image1.jpg')">Background 1</button>
+  <button onclick="setBackground('https://via.placeholder.com/400x200?text=Background+2')">Background 2</button><br><br>
+
+  <label>Or Upload Image:</label><br>
+  <input type="file" id="post-image" accept="image/*"><br><br>
+
+  <button onclick="savePost()">Post</button>
+
+  <script>
+  let postBackground = "";
+
+  function setBackground(url) {
+    postBackground = url;
+    const textarea = document.getElementById("post-text");
+    textarea.style.backgroundImage = `url('${url}')`;
+    textarea.style.color = "white";
+  }
+
+  function savePost() {
+    const text = document.getElementById("post-text").value.trim();
+    const imageFile = document.getElementById("post-image").files[0];
+
+    if (!text && !imageFile && !postBackground) {
+      alert("Write something or select an image or background.");
+      return;
+    }
+
+    const post = {
+      userName: "Afolabi Boluwatife", // 🧍 Change to dynamic if needed
+      userAvatar: "image/bolu1.jpg",        // 🖼️ Must be in your folder or full URL
+      text,
+      background: postBackground,
+      image: null,
+      timestamp: new Date().toISOString()
+    };
+
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        post.image = e.target.result;
+        saveToLocal(post);
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      saveToLocal(post);
+    }
+  }
+
+  function saveToLocal(post) {
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.unshift(post);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    window.location.href = "texting home.html";
+  }
+</script>
+  
+</body>
+</html>

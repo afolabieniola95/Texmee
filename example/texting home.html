@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .post {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      background-color: white;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-info {
+      margin-left: 10px;
+    }
+
+    .username {
+      font-weight: bold;
+      display: block;
+    }
+
+    .timestamp {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .menu-wrapper {
+      position: relative;
+    }
+
+    .dots {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      background-image: url('icon/dots.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 25px;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+      z-index: 1000;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu div {
+      padding: 6px;
+      cursor: pointer;
+    }
+
+    .menu div:hover {
+      background-color: #f0f0f0;
+    }
+
+    img.post-image {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>All Posts</h2>
+  <div id="posts"></div>
+
+  <script>
+    function loadPosts() {
+      const container = document.getElementById("posts");
+      container.innerHTML = "";
+      const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+      posts.forEach((post, index) => {
+        const div = document.createElement("div");
+        div.className = "post";
+        div.style.backgroundImage = post.background ? `url('${post.background}')` : "none";
+        div.style.color = post.background ? "white" : "black";
+
+        // Post Header
+        const header = document.createElement("div");
+        header.className = "post-header";
+
+        const userSection = document.createElement("div");
+        userSection.style.display = "flex";
+        userSection.style.alignItems = "center";
+
+        const avatar = document.createElement("img");
+        avatar.src = post.userAvatar || "image/bolu1.jpg";
+        avatar.className = "avatar";
+
+        const userInfo = document.createElement("div");
+        userInfo.className = "user-info";
+
+        const name = document.createElement("span");
+        name.className = "username";
+        name.textContent = post.userName;
+
+        const timestamp = document.createElement("span");
+        timestamp.className = "timestamp";
+        timestamp.textContent = new Date(post.timestamp).toLocaleString();
+
+        userInfo.appendChild(name);
+        userInfo.appendChild(timestamp);
+        userSection.appendChild(avatar);
+        userSection.appendChild(userInfo);
+
+        // Dots menu
+        const menuWrapper = document.createElement("div");
+        menuWrapper.className = "menu-wrapper";
+
+        const dots = document.createElement("div");
+        dots.className = "dots";
+        dots.onclick = () => {
+          menu.style.display = menu.style.display === "block" ? "none" : "block";
+        };
+
+        const menu = document.createElement("div");
+        menu.className = "menu";
+
+        const editBtn = document.createElement("div");
+        editBtn.textContent = "Edit";
+        editBtn.onclick = () => alert("Edit feature coming soon!");
+
+        const deleteBtn = document.createElement("div");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.onclick = () => {
+          if (confirm("Are you sure you want to delete this post?")) {
+            posts.splice(index, 1);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            loadPosts();
+          }
+        };
+
+        const reportBtn = document.createElement("div");
+        reportBtn.textContent = "Report";
+        reportBtn.onclick = () => {
+          alert("Thanks for reporting. We’ll review this post.");
+          menu.style.display = "none";
+        };
+
+        [editBtn, deleteBtn, reportBtn].forEach(btn => menu.appendChild(btn));
+        menuWrapper.appendChild(dots);
+        menuWrapper.appendChild(menu);
+
+        header.appendChild(userSection);
+        header.appendChild(menuWrapper);
+        div.appendChild(header);
+
+        // Post Text
+        if (post.text) {
+          const textWrapper = document.createElement("div");
+          textWrapper.style.marginTop = "10px";
+          textWrapper.style.borderRadius = "10px";
+          textWrapper.style.padding = "10px";
+          textWrapper.style.whiteSpace = "pre-wrap";
+
+          if (post.background) {
+            textWrapper.style.backgroundImage = `url('${post.background}')`;
+            textWrapper.style.backgroundSize = "cover";
+            textWrapper.style.backgroundPosition = "center";
+            textWrapper.style.color = "white";
+          } else {
+            textWrapper.style.backgroundColor = "#f9f9f9";
+            textWrapper.style.color = "black";
+          }
+
+          const text = document.createElement("p");
+          text.textContent = post.text;
+          text.style.margin = 0;
+          text.style.fontSize = "16px";
+
+          textWrapper.appendChild(text);
+          div.appendChild(textWrapper);
+        }
+
+        // Post Image
+        if (post.image) {
+          const img = document.createElement("img");
+          img.src = post.image;
+          img.className = "post-image";
+          div.appendChild(img);
+        }
+
+        container.appendChild(div);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadPosts);
+
+    // Close all open menus if clicking outside
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".menu-wrapper")) {
+        document.querySelectorAll(".menu").forEach(menu => {
+          menu.style.display = "none";
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
