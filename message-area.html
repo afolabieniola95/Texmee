@@ -57,14 +57,21 @@
      <img src="icon/search1.png" style="display: none; width: 20px; height: 20px;" id="searchIcon">
        </div> 
 
-    <div id="dots" style="display: flex; flex-direction: column; gap: 3px; padding-right: 5px;">
+    <div id="dot" style="display: flex; flex-direction: column; gap: 3px;">
         <div class="dots"></div>
         <div class="dots"></div>
         <div class="dots"></div>
     </div>
 </div>
-
-
+<div id="background-menu"></div>
+ <div id="menu">
+   <div style="padding: 10px; display: flex; align-items: center; gap: 5px;">
+   <img class="menu-icon" src="icon/Settings.png">
+   <div style="font-size: 17px;">Settings</div>
+   </div>
+   
+ </div>
+ 
   <div class = "online-activities">   
     <button class ="all">Chats</button>
     <button class="online">Online</button>
@@ -74,7 +81,7 @@
   </div>
   </div>
  
-  <div id="menu"></div>
+ 
   
   <div id = "chats-container">
     <div class="message-id">
@@ -92,7 +99,6 @@
     </div>
     
 		</div>
-    
     </div> 
   </div>
 
@@ -104,6 +110,8 @@
   <div id = "privacy-container"></div>
 
   <div id = "group-container"></div>
+  
+
 
    <script src="message-area.js"></script>
 </body>
