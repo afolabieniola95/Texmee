@@ -1,0 +1,110 @@
+	<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no"
+    charset="UTF-8">  </head>
+<script src="https://kit.fontawesome.com/188355e36e.js" crossorigin="anonymous"></script>
+<title>Messages Area</title>
+<link rel="stylesheet" href="message-area.css">
+</head>
+<body>
+  <!-- bottom nav (kept same) -->
+  <div class="bottom-nav">
+    <a href="home.html" style="text-decoration: none; color: black;">
+      <div class="nav-item">
+        <img src="icon/home-page.png" alt="Home">
+        <span>Home</span>
+      </div>
+    </a>
+
+    <a href="message_room.html" style="text-decoration: none">
+      <div class="nav-item">
+        <img src="icon/chat-active.png" alt="Chat">
+        <span>Chat</span>
+      </div>
+    </a>
+
+    <a href="create_posts.html">
+      <div class="nav-item">
+        <div style="box-shadow: 1px 1px 2px 1px black; border: 1px solid black; width: 30px; height: 30px; border-radius: 100px;">
+          <img src="icon/add-friends.png" alt="Post" style="width: 100%; height: 100%; border-radius: 100px;">
+        </div>
+      </div>
+    </a>
+
+    <a href="video_page.html" style="text-decoration: none;">
+      <div class="nav-item">
+        <img src="icon/video-page.png" alt="Video">
+        <span>Video</span>
+      </div>
+    </a>
+
+    <a href="profile.html" style="text-decoration: none;">
+      <div class="nav-item">
+        <div class="profile-photo" style="background-image: url('uploads/bolu1.jpg');"></div>
+        <span style="padding-bottom: 5px;">You</span>
+      </div>
+    </a>
+  </div>
+
+
+ <div class = "header">
+  <div style = "display: flex; align-items: center; justify-content: space-between;">
+       
+    <div class = "search-nav">
+      <img src = "icon/search.png" style = "width: 17px; height: 17px;">
+     <input type="text" id="text" placeholder="Search">
+     <img src="icon/search1.png" style="display: none; width: 20px; height: 20px;" id="searchIcon">
+       </div> 
+
+    <div id="dots" style="display: flex; flex-direction: column; gap: 3px; padding-right: 5px;">
+        <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+    </div>
+</div>
+
+
+  <div class = "online-activities">   
+    <button class ="all">Chats</button>
+    <button class="online">Online</button>
+     <button class="unread">Unread</button>
+     <button class="privacy">Privacy</button>
+      <button class="group">Group</button>
+  </div>
+  </div>
+ 
+  <div id="menu"></div>
+  
+  <div id = "chats-container">
+    <div class="message-id">
+   <div>
+  	<div class = "friend-avater" style="background-image: url('image/Edwin2.jpg');"></div>
+    </div>
+
+
+		<div class="info-message">
+		<div class = "friend-name">Edwin Samson</div>
+		<div class="message-count">1</div>
+		<div style="display: flex;">
+			<div class="last-message">How far samson where are u now?, have been waiting for u since morning.shey make i come nih?</div>
+			<div id="chat-time"></div> 
+    </div>
+    
+		</div>
+    
+    </div> 
+  </div>
+
+
+  <div id = "online-container"></div>
+
+  <div id = "unread-container"></div>
+
+  <div id = "privacy-container"></div>
+
+  <div id = "group-container"></div>
+
+   <script src="message-area.js"></script>
+</body>
+</html>
