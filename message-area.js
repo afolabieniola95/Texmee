@@ -253,6 +253,16 @@
  const unreadContainer = document.getElementById('unread-container');
  const privacyContainer = document.getElementById('privacy-container');
  const groupContainer = document.getElementById('group-container');
+const messages = chatContainer.querySelectorAll('[message-id]');
+
+if (messages.length === 0) {
+  chatContainer.textContent = 'No chat messages.';
+  chatContainer.style.textAlign = 'center';
+  chatContainer.style.padding = '10px';
+  chatContainer.style.color = 'grey';
+  chatContainer.style.fontFamily = 'sans-serif';
+  chatContainer.style.fontSize = '15px';
+}
 
  
  onlineContainer.style.display = 'none';
@@ -287,21 +297,31 @@
  groupContainer.style.fontSize = '15px';
  groupContainer.textContent = 'No group available.';
 
+
+
+   
       function formatTime(date){
         return date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-      }
-   document.getElementById("chat-time").textContent = formatTime(new Date());
+       document.getElementById("chat-time").textContent = formatTime(new Date());
+}
 
-   var messagesId = document.querySelector('message-id');
-   messagesId.style.display = 'none';
-
-
-  if(chatContainer){
-  alert('hello');
- }else{
-  alert('hi');
- }
-
+   const dotButton = document.getElementById('dot');
+   const dotMenu = document.getElementById('menu');
+   const backgroundMenu = document.getElementById('background-menu');
+   
+   backgroundMenu.style.display = 'none';
+   
+   dotButton.onclick=function(){
+   dotMenu.style.width = '200px';
+   backgroundMenu.style.display = 'flex';
+   document.body.style.overflow = 'hidden';
+   }
+   
+   backgroundMenu.onclick=function(){
+   dotMenu.style.width = '0px';
+   backgroundMenu.style.display = 'none';
+   document.body.style.overflow = 'visible';
+   }
 
 
 
