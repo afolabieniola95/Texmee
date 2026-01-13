@@ -128,15 +128,15 @@ button{
 }
 #chat-time{
   position: absolute;
-  bottom: 0;
+  bottom: 1;
   right: 2px;
-  padding-top: 7px;
+  padding-top: 8px;
   font-size: 11px;
   color: grey;
   margin-left: auto;
 }
 .last-message{
-  max-width: 360px; 
+  max-width: 240px; 
   white-space: nowrap;
   text-overflow: ellipsis; 
   overflow: hidden; 
@@ -205,10 +205,25 @@ button{
   position: fixed;
   top: 50px;
   right: 0px;
-  border: 2px solid gainsboro;
-  border-radius: 9px;
-  width: 200px;
-  height: 300px;
+  box-shadow: 1px 1px 4px grey;
+  border-radius: 4px;
+  width: 0px;
   background: whitesmoke;
   z-index: 1;
+  transition: width 0.2s ease;
+}
+
+#background-menu{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  background-color: transition;
+}
+
+.menu-icon{
+  width: 25px;
+  height: 25px;
 }
