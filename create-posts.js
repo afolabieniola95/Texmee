@@ -28,18 +28,20 @@ fileInput.addEventListener('change', (e)=>{
 
 });
 
+
+
 postBtn.addEventListener('click', ()=>{
   const file = fileInput.files?.[0];
   if(!file){
     btnAlert.style.display = 'block';
-    return;
-  }
-
-  });
-
-  setTimeout(function(){
+    setTimeout(()=>{
    btnAlert.style.display = 'none';
   }, 2000);
+    return;
+  }
+  });
+
+  
 
 
 
