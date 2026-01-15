@@ -57,23 +57,21 @@ textInput.focus();
 });
 
 textInput.addEventListener('input',() =>{
-  const value = textInput.value.trim();
-
-  if(value.length > 0){
-    overlayText.textContent = value; 
-  }
+    overlayText.textContent = textInput.value.trim(); 
 });
 
 
 closeOverlay.addEventListener('click', () =>{
+  const value = textInput.value.trim();
+
  textInput.style.display = "none";
  closeOverlay.style.display = "none";
- overlayText.style.display = "block"; 
- if(value.length < 1){
+ 
+ if(value.length > 0){
+  overlayText.style.display = "block";
+  overlayText.textContent = value;
+  } else {
   overlayText.style.display = "none";
  }
 });
 
-if(!closeOverlay.click){
-  alert('hello');
-}
