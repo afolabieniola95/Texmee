@@ -1,11 +1,11 @@
 const fileInput = document.getElementById('fileInput');
-const addBtn = document.getElementById('add-btn');
+const addMedia = document.getElementById('media');
 const preview = document.getElementById('preview');
 const placeholder = document.getElementById('placeholder');
-const postBtn = document.getElementById('postBtn');
+const postBtn = document.getElementById('post-btn');
+const btnAlert = document.getElementById('btn-alert');
 
-
-addBtn.addEventListener('click', () => fileInput.click());
+addMedia.addEventListener('click', () => fileInput.click());
 
 fileInput.addEventListener('change', (e)=>{
   const file = e.target.files?.[0];
@@ -31,20 +31,16 @@ fileInput.addEventListener('change', (e)=>{
 postBtn.addEventListener('click', ()=>{
   const file = fileInput.files?.[0];
   if(!file){
-    alert('Add media first.');
+    btnAlert.style.display = 'block';
     return;
   }
 
-  const payload = {
-    caption: caption.value.trim(),
-    hashtags: hashtags.value.trim(),
-    location: location.value.trim(),
-    file: file.name
-  };
+  });
 
-  console.log('POST PAYLOAD:', payload);
-  alert('Post created (UI only).');
-});
+  setTimeout(function(){
+   btnAlert.style.display = 'none';
+  }, 2000);
+
 
 
 const addText = document.getElementById('add-text');
