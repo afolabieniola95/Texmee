@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width,  initial-scale= 1.0, user-scalable=no">  
+<link rel="stylesheet" href="create-post.css">
+</head>  
+<body> 
+ 
+    <div class="media-nav">
+   <div class="media-box" id="preview">
+      <div class="media-placeholder" id="placeholder">
+      <div>No media selected</div>
+      <div style="font-size:13px;color:var(--muted)">Tap + to add photo or video</div>
+       </div>
+       <p id="overlayText"></p>
+   </div>
+    
+  
+       <div class="nav" id="nav">
+      <div>
+     <img id="add-text" src="icons/text.png" style="width: 35px; height: 35px;">
+    <div style="font-size: 13px; text-align: center;">Text</div>
+      </div> 
+          
+      <div>
+     <img id="add-btn" src="icons/add-media1.png" style="width: 35px; height: 35px;">
+    <div style="font-size: 13px; text-align: center;">Media</div>
+      </div> 
+       
+      <div>
+     <img id="music-btn" src="icons/music.png" style="width: 35px; height: 35px;">
+    <div style="font-size: 13px; text-align: center;">Music</div>
+      </div> 
+          
+    <div>
+     <img id="effect-btn" src="icons/effect.png" style="width: 35px; height: 35px;">
+    <div style="font-size: 13px; text-align: center;">Effect</div>
+      </div> 
+          
+      <div>
+     <img id="voice-btn" src="icons/voice-record.png" style="width: 35px; height: 35px;">
+    <div style="font-size: 13px; text-align: center;">Voice</div>
+      </div> 
+          
+  </div>
+   </div>
+   
+    <div id="textInputBox">
+    <input type ="text" class="textInput" id="textInput" placeholder="Add text">
+    </div>
+
+    <input type="file" id="fileInput" accept="image/*,video/*">
+  
+  <div cass="text-btn"></div>
+
+   
+  
+  <div class="postBtn-nav">
+  <button class="post-btn" id="postBtn">Post</button>
+   </div>
+    
+    <script src="create-post.js"></script>
+  
+ </body>  
+</html>  
