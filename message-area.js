@@ -16,6 +16,7 @@
   all.style.color = 'white';
    all.style.background = 'black';
    all.style.border = '1px solid black';
+   
    all.style.fontWeight = 'bold';
    all.style.fontSize = '11px';
    
