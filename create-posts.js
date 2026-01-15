@@ -45,13 +45,14 @@ postBtn.addEventListener('click', ()=>{
 
 
 
-const addText = document.getElementById('add-text');
-const textInputBox = document.getElementById('textInputBox');
-const textInput = document.getElementById('textInput');
-const overlayText = document.getElementById('overlayText');
+const addText = document.getElementById('text');
+const textInput = document.getElementById('text-input');
+const overlayText = document.getElementById('overlay-text');
+const closeOverlay = document.getElementById('close-overlay');
 
 addText.addEventListener('click', () =>{
-textInputBox.style.display = "block";
+textInput.style.display = "block";
+closeOverlay.style.display = "block";
 textInput.focus(); 
 });
 
@@ -59,16 +60,20 @@ textInput.addEventListener('input',() =>{
   const value = textInput.value.trim();
 
   if(value.length > 0){
-    overlayText.textContent = value;
-    overlayText.style.display = "block";  
-  }else{
-    overlayText.style.display = "none";
+    overlayText.textContent = value; 
   }
 });
 
 
-addText.addEventListener('dbiclick', () =>{
-  if (textInput.value.trim() === ""){
-    textInputBox.style.display = "none";
-  }
-})
+closeOverlay.addEventListener('click', () =>{
+ textInput.style.display = "none";
+ closeOverlay.style.display = "none";
+ overlayText.style.display = "block"; 
+ if(value.length < 1){
+  overlayText.style.display = "none";
+ }
+});
+
+if(!closeOverlay.click){
+  alert('hello');
+}
