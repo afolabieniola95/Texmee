@@ -85,6 +85,7 @@ span{
   width: 100px;
   height: 15px;
   text-align: center;
+  text-shadow: 1px 1px grey;
   padding: 5px;
   border-radius: 50% / 100px;
 }
@@ -126,7 +127,76 @@ span{
   background: transparent;
 }
 
-#effect{
+.effect-panel{
   position: fixed;
-  
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 0px;
+  background: white;
+  z-index: 1;
+  transition: height 0.2s ease;
+}
+
+.drag-handle{
+  width: 50px;
+  height: 10px;
+  background: gainsboro;
+  border-radius: 9px;
+}
+
+.effect-content{
+   width: 100%;
+   height: 100%;
+   background: whitesmoke;
+}
+
+.effect-panel-close{
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+.music-panel{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background: white;
+  z-index: 1;
+}
+
+.music-panel-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px 0px 10px 0px;
+}
+
+.header{
+  width: 60px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 100px;
+  font-size: 13px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+} 
+
+.music-container{
+  background: white;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  color: grey;
+  font-size: 15px;
 }
