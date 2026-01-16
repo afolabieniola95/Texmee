@@ -136,5 +136,8 @@ span{
 }
 
 .drag-handle{
-  width: ;
+  width: 100px;
+  height: 30px;
+  background-color: gainsboro;
+  
 }
