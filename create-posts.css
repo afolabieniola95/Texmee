@@ -128,5 +128,6 @@ span{
 
 #overlay-effect{
   position: fixed;
+  bottom: 0;
   
 }
