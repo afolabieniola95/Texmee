@@ -131,6 +131,8 @@ span{
   bottom: 0;
   left: 0;
   width: 100%;
-  background: white;
-  
+  height: 500px;
+  background: gainsboro;
 }
+
+.drag-han
