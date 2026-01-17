@@ -50,6 +50,7 @@ const closeOverlay = document.getElementById('close-overlay');
 const effect = document.getElementById('effect');
 const effectPanel = document.getElementById('effect-panel');
 const effectPanelClose = document.getElementById('effect-panel-close');
+const mediaNav = document.getElementById('media-nav');
 
 addText.addEventListener('click', () =>{
   const file = fileInput.files?.[0];
@@ -62,6 +63,7 @@ addText.addEventListener('click', () =>{
   }else{
 textInput.style.display = "block";
 closeOverlay.style.display = "block";
+mediaNav.style.display = "none";
 textInput.focus(); 
   }
 });
@@ -76,6 +78,7 @@ closeOverlay.addEventListener('click', () =>{
 
  textInput.style.display = "none";
  closeOverlay.style.display = "none";
+ mediaNav.style.display = "flex";
  
  if(value.length > 0){
   overlayText.style.display = "block";
