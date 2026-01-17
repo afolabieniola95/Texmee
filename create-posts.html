@@ -9,17 +9,27 @@
  
   <div id="close-overlay"></div>
 
-  <p id="overlay-text"></p>
 
-  <div class="effect-panel"></div>
-
+  
+  <div id="effect-panel-close"></div>
+  <div id="effect-panel" class="effect-panel">
+  <div style="padding: 10px; display: flex; align-items: center; justify-content: center;">
+    <div class="drag-handle"></div>
+    </div>
+    
+    <div class="effect-container">
+    <img class="effect" src="effect/effect1.gif">
+    </div>
+  </div>
+  
+   <p id="overlay-text"></p>
   <div class="media-preview" id="preview"></div>
     
    <input type="file" id="fileInput" accept="image/*,video/*">
    <input type="text" id="text-input" name="overlay-input">
 
 
-    <div class="media-nav" id="nav">
+    <div class="media-nav" id="media-nav">
        
       <div class="m-nav">
      <img id="text" src="icon/text.png">
