@@ -7,11 +7,32 @@
 </head>  
 <body> 
  
-  <div id="close-overlay"></div>
+ 
+
+  <div id="music-panel-close"></div>
+
+  <div class="music-panel" id="music-panel">
+   <div style="padding: 10px; display: flex; align-items: center; justify-content: center;">
+    <div class="drag-handle"></div>
+    </div>
+
+    <div class="header">
+   <div class="header-nav" id="popular">popular</div>
+   <div class="header-nav" id="trending">trending</div>
+   <div class="header-nav" id="storage">Storage</div>
+   </div>
+
+    <div class="music-container">
+ <div id="popular-container">popular coming soon</div>
+ <div id="trending-container">trending coming soon</div>
+ <div id="storage-container">Storage coming soon</div>
+
+    </div>
+</div>
 
 
-  
   <div id="effect-panel-close"></div>
+
   <div id="effect-panel" class="effect-panel">
   <div style="padding: 10px; display: flex; align-items: center; justify-content: center;">
     <div class="drag-handle"></div>
@@ -21,8 +42,23 @@
     <img class="effect" src="effect/effect1.gif">
     </div>
   </div>
-  
+
+    <div id="close-overlay">
+
+      <div class="overlay-color">
+
+        <div style="width: 50px; height: 50px; border-radius: 9px;  background: red;"></div>
+
+        <div style="width: 50px; height: 50px; border-radius: 9px; background: green;"></div>
+
+        <div style="width: 50px; height: 50px; border-radius: 9px; background: blue;"></div>
+      </div>
+
+    </div>
+
    <p id="overlay-text"></p>
+
+
   <div class="media-preview" id="preview"></div>
     
    <input type="file" id="fileInput" accept="image/*,video/*">
@@ -31,8 +67,8 @@
 
     <div class="media-nav" id="media-nav">
        
-      <div class="m-nav">
-     <img id="text" src="icon/text.png">
+      <div class="m-nav" id="text">
+     <img  src="icon/text.png">
     <span>Text</span>
       </div> 
      
