@@ -9,14 +9,14 @@
 <body>
 
   <div class="header">
-   <img src="icon/backarrow.png">
+   <img onclick="history.back()" src="icon/backarrow.png">
    <div>Followers</div>
   </div>
   
 
   
   <div class="followers-container">
-    <div class="followers-id">
+    <div class="follower-card">
     <div style="width: 100%; display: flex; align-items: center; gap: 20px;">
     <div class="follower-avater">
       <div id="id-1"></div>
@@ -25,10 +25,16 @@
    </div>
    
    <button class="follow-btn">Follow</button>
+   <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+   </div>
+
     </div>
     
     
-    <div class="followers-id">
+    <div class="follower-card">
     <div style="width: 100%; display: flex; align-items: center; gap: 20px;">
     <div class="follower-avater">
     <div id="id-2"></div>
@@ -36,18 +42,27 @@
     <div id="follower-name">Eniola Abodunrin</div>
    </div>
    
-   <div class="dots" style="display: flex;">
-     <div class="dot"></div>
-     <div class="dot"></div>
-     <div class="dot"></div>
-   </div>
-  
-    </div>
+   <button class="follow-btn">Follow</button>
 
+   <div class="dots">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  </div>
+
+ <div class="follow-alert">You a now following (following name)</div>
+
+ <div class="dot-menu-close"></div>
+ 
+ <div class="dot-menu">
+  <div class="menu-nav">Chat</div>
+  <div class="menu-nav">Unfollow</div>
+  <div class="menu-nav" style="color: red">Delete</div>
+  
+  
  </div>
-  
-
-
   
 <script src="followers.js"></script>
 
