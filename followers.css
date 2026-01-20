@@ -80,7 +80,7 @@ height: 20px;
 }
 
 
-.dots{
+.menu-dot{
   display: none;
 }
 
@@ -97,7 +97,7 @@ height: 20px;
   top: 30%;
   left: 50%;
   border: 1px solid gainsboro;
-  width: 280px;
+  width: 250px;
   padding: 5px;
   color: black;
   border-radius: 9px;
@@ -108,9 +108,10 @@ height: 20px;
   box-shadow: 1px 1px 2px gainsboro;
   transform: translate(-50%, -50%);
   opacity: 0;
+  text-align: center;
 }
 
-.dot-menu{
+.menu-modal{
 position: fixed;
 top: 0%;
 right: 0%;
@@ -123,7 +124,7 @@ transition: 0.1s;
 }
 
 .menu-nav{
-padding: 3px 9px;
+padding: 7px 9px;
 font-size: 15px;
 color: black;
 text-align: left;
