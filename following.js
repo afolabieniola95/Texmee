@@ -24,7 +24,7 @@ document.addEventListener('click', (e)=>{
    menu.style.top = '5%';
    menu.style.right = '2%'
    menu.style.width = '100px';
-   menu.style.height = '80px';
+   menu.style.height = '100px';
    menuClose.style.display = 'block';
   }
 });
