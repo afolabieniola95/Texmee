@@ -7,9 +7,20 @@
   <title>Menu</title>
   <style>
 body {
-      margin: 45px 0 0 0;
+      margin: 40px 0 0 0;
       font-family: sans-serif;
     }
+
+
+.profile-info{
+     border-bottom: 1px solid gainsboro;
+     padding: 15px 0px 10px 15px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background: white;
+     box-shadow: 0px 0px 3px 1px gainsboro;
+}
 
 .header{
       display: flex; 
@@ -22,8 +33,7 @@ body {
       border-bottom: 1px solid gainsboro;
       padding: 8px; 
       background-color: white; 
-      box-shadow: 0px 0px 6px 1px gainsboro;
-    }
+}
 
 h3{
      margin: 0px;
@@ -32,57 +42,25 @@ h3{
 }
 
 .profile-photo {
-      width: 70px;
-      height: 70px;
-      border-radius: 100%;
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
       border: 2px solid white;
       background-size: cover;
       background-position: center;
       background-color: gainsboro;
-    }
+}
 
-    .profile-name {
+.profile-name {
       padding: 25px 10px;
       font-size: 20px;
       font-weight: bold;
-    }
+}
 
-        .account {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      cursor: pointer;
-      justify-content: space-between;
-    }
-    .account-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .avatar {
-      width: 50px;
-      height: 50px;
-      background-color: #ccc;
-      border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-    }
-    .delete-btn {
-      background: red;
-      color: white;
-      border: none;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-	
-	.logout{
-    align-items: center; 
-	justify-cotent: center;
-	width: 50%;
+	button{
+  align-items: center; 
+	justify-content: center;
+	width: 150px;
 	background-color: black; 
 	font-weight: bold;
 	font-size: 13px; 
@@ -90,74 +68,91 @@ h3{
 	border-radius: 5px;
 	padding: 6px;
 	margin-top: 40px;
-
 	}
+
+  .menu-options{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  .options{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 16px;
+    margin-bottom: 40px;
+    color: black;
+  }
+
   </style>
 </head>
 <body>
   <!-- Top bar -->
   <div class="header">
-    <div onclick="history.back()" style="background-image: url('icon/backarrow.png'); background-size: cover; background-position: center; width: 25px; height: 25px;"></div>
-    <h3>Menu</h3>
+    <img onclick="history.back()" src="icon/backarrow.png" style="width: 22px; height: 22px;">
+    <h3>Settings</h3>
   </div>
 
   <!-- Profile info -->
-  <div style="border-bottom: 1px solid gainsboro; padding: 15px 0px 10px 15px; margin-top: 60px;">
-  <div style="display: flex; gap: 10px;">
-   <div class="profile-photo" style="background-image: url('uploads/image1.jpg');
-	  background-position: center; background-size: cover;"></div>
-    <div class="profile-name">Afolabi Boluwatife</div>
+  <div class="profile-info">
+  <div style="display: flex; align-items: center;">  
+  
+  <div class="profile-photo" style="background-image: url('uploads/image1.jpg');"></div>
+
+  <div class="profile-name">Afolabi Boluwatife</div>
+    </div>
+
+  <a href = 'switch_account.html'>
+     <img src="icon/switch.png" style="width: 20px; height: 20px;  margin-right: 30px;">
+	 </a> 
     </div>
   
-   <button style="margin-top: 15px; border: 1px solid gainsboro;  border-radius: 5px; display: flex; gap: 10px;">
-    <div style="background-image: url('icon/switch.png'); background-size: cover; background-position: center; width: 15px; height: 15px;"></div>
-    <div onclick="window.location.href = 'switch_account.php'" style="font-size: 16px;">
-	Switch accounts</div>
-  </button>
-  </div>
+    
+   </div>
 
   <!-- Menu options -->
-
-
-  <div style="border: 1px solid gainsboro; margin: 15px 5px; border-radius: 5px; padding: 15px; display: flex;">
-    <div style="background-image: url('icon/settings.png'); background-size: cover; background-position: center; width: 25px; height: 25px;"></div>
-    <div style="padding: 6px 0 0 15px; font-size: 20px;">Settings</div>
+   <div class="menu-options">
+   
+    <!-- options -->
+    <div class="options">
+    <img src="icon/manage-account.png" style="width: 25px; height: 25px;">
+    <span>Manage account</span>
   </div>
 
-  <!-- Other options -->
-  <div style="border: 1px solid gainsboro; margin: 15px 5px; border-radius: 5px; padding: 15px; display: flex;">
-    <div style="background-image: url('icon/language.png'); background-size: cover; background-position: center; width: 25px; height: 25px;"></div>
-    <div style="padding: 6px 0 0 15px; font-size: 20px;">Language</div>
+  <div class="options">
+    <img src="icon/notification.png" style="width: 25px; height: 25px;">
+    <span>Nofications</span>
   </div>
 
-  <div style="border: 1px solid gainsboro; margin: 15px 5px; border-radius: 5px; padding: 15px; display: flex;">
-    <div style="background-image: url('icon/aboutApp.png'); background-size: cover; background-position: center; width: 28px; height: 28px;"></div>
-    <div style="padding: 6px 0 0 15px; font-size: 20px;">About</div>
+    <div class="options">
+    <img src="icon/chat-page.png" style="width: 25px; height: 25px;">
+    <span>Chats</span>
   </div>
 
-  <div style="border: 1px solid gainsboro; margin: 15px 5px; border-radius: 5px; padding: 15px; display: flex;">
-    <div style="background-image: url('icon/help.png'); background-size: cover; background-position: center; width: 25px; height: 25px;"></div>
-    <div style="padding: 6px 0 0 15px; font-size: 20px;">Help</div>
+<a href="language-settings.html" style="text-decoration: none; color: black">
+  <div class="options">    
+   <img src="icon/language.png" style="width: 25px; height: 25px;">
+    <div style="padding-top: 8px;">
+   <span>Language</span>
+   <div style="font-size: 12px;">English</div>
+   </div>
+ </div></a>
+
+
+   <div class="options">    
+   <img src="icon/help.png" style="width: 25px; height: 25px;">
+    <span>Help and feedback</span>
   </div>
 
-   <!-- Switch Account List -->
-    <div id="accountsContainer"></div>
+  
   
   <!-- Logout button -->
   <center>
-  <button onclick="Logout()" class = "logout">Log out</button>
+  <button class = "logout">Log out</button>
    </center>
-  <!-- Logout confirmation -->
-  <div id="closeAlert" style="display: none; position: fixed; top: 0; left: 0px; bottom: 0px; right: 0px; width: 100%; background-color: rgb(0,0,0,0.1);"></div>
-  <div id="openAlert" style="display: none; position: fixed; top: 40%; left: 15%; width: 50%; padding: 10px 0px 0px 70px; height: 70px; border: 1px solid gainsboro;
-  background-color: white; border-radius: 9px; transition: ease-in-out 5s; opacity: 1; z-index: 2;">
-    Do you want to logout?
-    <div style="position: absolute; left: 12%; bottom: 6%; display: flex; gap: 150px; padding-top: 12px;">
-      <div onclick="confirmLogout(true)">Yes</div>
-      <div onclick="confirmLogout(false)">No</div>
-    </div>
-  </div>
 
+  
  
   <!-- JavaScript -->
  <script>

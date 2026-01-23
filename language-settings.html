@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Language</title>
+  <style>
+body {
+      margin: 40px 0 0 0;
+      font-family: sans-serif;
+    }
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid gainsboro;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: white;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+  .language-container{
+    width: 100%;
+    background: white;
+    padding: 10px 10px;
+  }
+
+
+  .list{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+    gap: 5px;
+  }
+  </style>
+</head>
+<body>
+  
+  
+  <div class="language-container">
+
+  <div class="header">
+   <img onclick="history.back()" src="icon/backarrow.png" style="width: 20px; height: 20px;">
+   <div>Language</div>
+  </div>
+  
+
+  <div class="list">
+   <input type="radio" id="radio">
+  <div style="padding-top: 5px;">English</div>
+  </div>
+
+  <div class="list">
+  <input type="radio" id="radio">
+  <div style="padding-top: 5px;">France</div>
+  </div>
+
+  <div class="list">
+  <input type="radio" id="radio">
+  <div style="padding-top: 5px;">Yoruba</div>
+  </div>
+
+  <div class="list">
+  <input type="radio" id="radio">
+  <div style="padding-top: 5px;">Igbo</div>
+  </div>
+ 
+   </div>
+  </div>
+
+</body>
+</html>
