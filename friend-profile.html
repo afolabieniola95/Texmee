@@ -43,14 +43,14 @@
    
 #post-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 3px;
   gap: 6px;
 }
 
 .posts{
   position: relative;
-  aspect-ratio: 5/7;
+  aspect-ratio: 3/5;
   overflow: hidden;
   width: 100%;
 }
@@ -83,20 +83,19 @@ cursor: pointer;
 }
 
 
-#liked-section {
+#status-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 3px;
   gap: 6px;
+   display: none;
 }
 
-#liked-section{
-  display: none;
-}
+
 
 .liked{
   position: relative;
-  aspect-ratio: 5/7;
+  aspect-ratio: 3/5;
   overflow: hidden;
   width: 100%;
 }
@@ -134,31 +133,53 @@ cursor: pointer;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    font-size: 17px;
+    font-size: 15px;
     color: black;
-    padding: 0px 0px;
   }
 
   span{
-    padding-top: 10px;
+    padding-top: 3px;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
   }
-  
-  #friendBtn{
-    display: flex; 
-    align-items: center;
+
+  .friendBtn{
     text-align: center;
-    width: 400px;
-    margin: 10px auto 0px;
-    justify-content: center;
-    border: 1px solid grey; 
-    background-color: white;
+    width: 260px;
     padding: 5px;  
     border-radius: 9px;
-    font-size: 15px;
+    font-size: 16px;
     font-family: sans-serif;
   }
+
+  .verify-alert{
+  display: none; 
+  position: fixed; 
+  top: 30%; 
+  left: 25%;
+  transform: translate(50%, 50%);
+  text-align: center; 
+  font-family: sans-serif; 
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid grey; 
+  border-radius: 9px; 
+  background-color: whitesmoke;
+}
+
+.post{
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  width: 50%;
+  text-align: center;
+}
+
+.status{
+  width: 50%;
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
@@ -172,89 +193,55 @@ cursor: pointer;
 
  <h2 class="name">Edwin Samson</h2>
 
- <button id="friendBtn">Friendship</button>
-<script>
-  const profileUser = {name: "Edwin", isFriend: false};
-  const friendBtn = document.getElementById('friendBtn');
+ 
 
-  if(profileUser.isFriend){
-    friendBtn.textContent = "Friendship";
-    friendBtn.style.backgroundColor = "white";
-    friendBtn.style.color = "black";
-  }else{
-    friendBtn.textContent = "Add";
-    friendBtn.style.backgroundColor = "black";
-    friendBtn.style.color = "white";
-  }
+ 
+  
+<div style = "gap: 30px; padding: 20px; display: flex; align-items: center; justify-content: center;">
+  <a href="chat-room.html" style="text-decoration: none; color: black;">
+  <button class="friendBtn"></button>
+ </a>
 
-  friendBtn.onclick = function(){
-   if(profileUser.isFriend){ 
-    profileUser.isFriend = false;
-    friendBtn.textContent = "Add";
-    friendBtn.style.backgroundColor = "black";
-    friendBtn.style.color = "white";
-    friendBtn.style.border = "none";
-     friendBtn.style.border = "1px solid black";
-   }else{
-    profileUser.isFriend = true;
-    friendBtn.textContent = "Friendship";
-    friendBtn.style.backgroundColor = "white";
-    friendBtn.style.color = "black";
-    friendBtn.style.border = "1px solid grey";
-   }
-  }
-</script>
-
- <div style = "gap: 30px; padding: 20px; display: flex; align-items: center; justify-content: center;">
-        <button onclick="window.location.href = 'chat-room.html'" style=" border: 1px solid gainsboro; 
-          font-size: 18px; font-family: georgia; padding: 5px; width: 80%; border-radius: 9px;">
-          Messages</button>
-   
    <img id = "verify" src="icon/verify.png" style="width: 20px; height: 20px;"></div>
 </div>
 
-<div id = "alertVerify" style = "display: none; position: fixed; top: 40%; left: 23%; right: 23%; text-align: center;
-font-family: sans-serif; font-size: 14px; font-weight: bold; padding: 10px;border: 1px solid grey; border-radius: 9px; 
-background-color: whitesmoke;">
+
+
+<div class= "verify-alert">
  <div>Coming soon...</div>
 </div>
 
+
    <div class = "bottom-nav">
-      <a href="fllower_page.php" style="text-decoration: none; color: black;">
+     <a href="followers.html" style="text-decoration: none; color: black;">
 	 <div class = "nav-item">
-      <div style="font-weight: bold;">1k</div>    
-         	<span>Followers</span>
-</div></a>
+      <div>1k</div>    
+      <span>Followers</span>
+     </div></a>
         
-    
-      <a href="following-page.html" style="text-decoration: none">
+   <a href="following.html" style="text-decoration: none">
      <div class = "nav-item">
-      <div style="font-weight: bold;">500</div>  
-       <span>Following</span>
-</div></a>
-      
- <a href = "friend-page.html" style="text-decoration: none">
-      <div class = "nav-item">
-     <div style="font-weight: bold;">2k</div>
-     <span>Friends</span>
+      <div>500</div>  
+    <span>Following</span>
       </div></a>
-
-		 
+      
+ 
+		 <a href = "likes-page.php" style="text-decoration: none">
+      <div class = "nav-item">
+      <div>2k</div>
+     <span>Likes</span>
+      </div></a>
     
 </div>
-</div>
 
       
-  <div style="display: flex; justify-content: space-evenly; align-items: center; border-bottom: 1px solid grey; padding-top: 20px; width: 100%;">
-    <div id="post" style="width: 50%; font-weight: bold; border-bottom: 1px solid black;">
-        <div style="text-align: center; font-size: 15px;">
-          Posts<span style = "padding: 2px; font-size: 12px;">4</span></div>
-    </div>
       
-     <div id = "liked" style = "width: 50%;">
-   <div  style="font-size: 16px; text-align: center; font-size: 15px;">
-    Liked<span style = "padding: 2px; font-size: 12px;">3</span></div>
-   </div>
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid grey; padding-top: 20px; width: 100%;">
+    
+    <div class ="post">Posts</div>
+    
+     <div class ="status">Status</div>
+  
   </div>
  
 
@@ -287,59 +274,28 @@ background-color: whitesmoke;">
 </div>
   
 <!--All your saved posts -->
-<div id = "liked-section">
-  <div class = "liked">
+<div id = "status-section">
+  <div class = "status">
   <img src="image/image4.jpg">
   <img class = "like-icon" src = "icon/liked.png">
+  <img class = "view-icon" src = "icon/view1.png">
+   <div class = "view-count">10</div>
   </div>
-   <div class = "liked">
+   <div class = "status">
   <img src="uploads/image1.jpg">
   <img class = "like-icon" src = "icon/liked.png">
+  <img class = "view-icon" src = "icon/view1.png">
+   <div class = "view-count">10</div>
   </div>
    <div class = "liked">
   <img src="uploads/edwin1.jpg">
   <img class = "like-icon" src = "icon/liked.png">
+  <img class = "view-icon" src = "icon/view1.png">
+   <div class = "view-count">10</div>
   </div>
 </div>  
  
-<script>
- const post =  document.getElementById('post');
- const liked = document.getElementById('liked');
- const postSection = document.getElementById('post-section');
- const likedSection = document.getElementById('liked-section');
- 
- liked.onclick = function (){
-postSection.style.display = "none";
-likedSection.style.display = "grid";
-
-post.style.borderBottom = "1px solid whitesmoke";
-post.style.fontWeight = "normal";
-liked.style.fontWeight = "bold";
-liked.style.borderBottom = "1px solid black";
- };
-
- post.onclick = function (){
-postSection.style.display = "grid";
-likedSection.style.display = "none";
-
-post.style.borderBottom = "1px solid black";
-post.style.fontWeight = "bold";
-liked.style.fontWeight = "normal";
-liked.style.borderBottom = "1px solid whitesmoke";
- };
-
-
-const verify = document.getElementById('verify');
-
-verify.onclick = function (){
-alertVerify.style.display = "block";
-
-setTimeout(function(){
- alertVerify.style.display = "none";
-}, 2000);
-
-};
-</script>
+<script src="friend-profile.js"></script>
 
 
 </body>
