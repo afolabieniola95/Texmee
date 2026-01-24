@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width-device=width, initial-scale=1" charset="UTF-8">
+        <title>Search Room</title>
+         <style>
+            body{
+                margin: 0px;
+            }
+
+            .header{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+                border-bottom: 1px solid whitesmoke;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .search-container{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 8px;
+                border: 1px solid gainsboro;
+                background: whitesmoke;
+                border-radius: 9px;
+    
+            }
+
+            input{
+                width: 100%;
+                outline: none;
+                font-size: 14px;
+                padding: 2px;
+                text-align: left;
+                background: whitesmoke;
+                border: none;
+            }
+
+            .user{
+                display: none;
+                padding: 6px;
+            }
+
+            .highlight{
+                background-color: red;
+            }
+         </style>
+    </head>
+    <body>
+        <div class="header">
+            <img onclick="history.back()" src="icon/backarrow.png" style="width: 20px; height: 20px;">
+            <div class="search-container">
+                <input type="text" name="search" id="searchInput" placeholder="Search.." autofocus />
+                <img src="icon/search.png" style="width: 16px; height: 16px;">
+            </div>
+        </div>
+
+        <div class="user">Afolabi Boluwatife</div>
+        <div class="user">Ojibala Temitope</div>
+        <div class="user">Edwin Samson</div>
+        <div class="user">Adeniran Toyin</div>
+
+        <script>
+            const searchInput = document.getElementById('searchInput');
+            const users = document.querySelectorAll('.user');
+
+            searchInput.addEventListener('input', ()=>{
+                const query = searchInput.value.trim().toLowerCase();
+
+                if(query ===''){
+                    users.forEach(user =>{
+                    user.style.display = 'none';
+                    user.innerHTML = user.textContent;    
+                    });
+                    return;
+                    }
+                
+
+                users.forEach(user =>{
+                   const name = user.textContent.toLowerCase();
+                
+                if(name.includes(query)){
+                    user.style.display = 'block';
+
+                 //Highlight matching text
+                const start = name.indexOf(query);
+                const end = start + query.length;
+                const original = user.textContent;
+
+                user.innerHTML = original.slice(0, start) + `<span class="highlight">` +
+                    original.slice(start, end) + `</span>` + original.slice(end);
+                }else{
+                    user.style.display = 'none';
+                    user.innerHTML = user.textContent;
+                }
+            });
+
+        });
+            
+        
+        </script>
+    </body>
+</html>
