@@ -1,34 +1,38 @@
 
-  const profileUser = {name: "Edwin", isFriend: false};
-  const friendBtn = document.querySelector('.friendBtn');
-  
+  const profileUser = {name: "Edwin", isFollowing: false};
+  const followBtn = document.querySelector('.followBtn');
+  const messageBtn = document.querySelector('.messageBtn');
 
-  if(profileUser.isFriend){
-    friendBtn.textContent = "Messages";
-    friendBtn.style.backgroundColor = "white";
-    friendBtn.style.color = "black";
+  if(profileUser.isFollowing){
+    followBtn.textContent = "Following";
+    followBtn.style.backgroundColor = "white";
+    followBtn.style.color = "black";
+    messageBtn.style.display = 'block';
     
   }else{
-    friendBtn.textContent = "Add";
-    friendBtn.style.backgroundColor = "black";
-    friendBtn.style.color = "white";
+    followBtn.textContent = "Follow";
+    followBtn.style.backgroundColor = "black";
+    followBtn.style.color = "white";
   }
 
-  friendBtn.onclick = function(){
-   if(profileUser.isFriend){ 
-    profileUser.isFriend = false;
-    friendBtn.textContent = "Add";
-    friendBtn.style.backgroundColor = "black";
-    friendBtn.style.color = "white";
-    friendBtn.style.border = "none";
-    friendBtn.style.border = "1px solid black";
+  followBtn.onclick = function(){
+   if(profileUser.isFollowing){ 
+    profileUser.isFollowing = false;
+    followBtn.textContent = "Follow";
+    followBtn.style.backgroundColor = "black";
+    followBtn.style.color = "white";
+    followBtn.style.border = "none";
+    followBtn.style.border = "1px solid black";
+    messageBtn.style.display = 'none';
     
    }else{
-    profileUser.isFriend = true;
-    friendBtn.textContent = "Messages";
-    friendBtn.style.backgroundColor = "white";
-    friendBtn.style.color = "black";
-    friendBtn.style.border = "1px solid grey";
+    profileUser.isFollowing = true;
+    followBtn.textContent = "Following";
+    followBtn.style.backgroundColor = "white";
+    followBtn.style.color = "black";
+    followBtn.style.border = "1px solid grey";
+    followBtn.style.width = "200px";
+    messageBtn.style.display = 'block';
    }
   }
 
