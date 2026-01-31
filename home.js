@@ -6,16 +6,16 @@ const CAPTION_LIMIT = 80;
        Replace or add items here to change posts
        ------------------------- */
     const posts = [
-  {
+      {
     id: 1,
     user: {
       name: "John Doe",
-      avatar: "uploads/image1.jpg"
+      avatar: "image/image3.jpg"
     },
     content: {
       text: null,
-      image: "uploads/image1.jpg",
-      caption: "My new car gufiytdftydulhfdtrzxygffgyctuxgkycxrxgyctfidgycfidxdstfcbfdiyxiyxiytdtiy"
+      image: "image/image2.jpg",
+      caption: "Alita is back!!!"
     },
     comments: [],
     
@@ -33,12 +33,36 @@ const CAPTION_LIMIT = 80;
   {
     id: 2,
     user: {
-      name: "Edwin Samson",
+      name: "John Doe",
       avatar: "uploads/edwin1.jpg"
     },
     content: {
-      text: "Today I learned something new!",
-      image: null,
+      text: null,
+      image: "image/edwin2.jpg",
+      caption: "New Year New System😊😁👍"
+    },
+    comments: [],
+    
+    stats: {
+      likes: 120
+    },
+    ui: {
+      liked: false,
+      captionExpanded: false,
+      following: false
+    },
+    createdAt: "2025-01-10"
+  },
+
+  {
+    id: 3,
+    user: {
+      name: "Eniola Boluwatife",
+      avatar: "image/bolu1.jpg"
+    },
+    content: {
+      text: null,
+      image: "image/bolu3.jpg",
       caption: "xup Guyyys"
     },
     comments: [],
@@ -163,7 +187,13 @@ const CAPTION_LIMIT = 80;
   shareBtn.className = 'post-btn';
   shareBtn.innerHTML = `<img src="icon/share.png" style="width:28px;height:28px;">`;
   actions.appendChild(shareBtn);
-
+  
+  // More button
+  const moreBtn = document.createElement('button');
+  moreBtn.className = 'post-btn';
+  moreBtn.innerHTML = `<img src="icon/dots.png" style="width:28px;height:28px;">`;
+  actions.appendChild(moreBtn);
+  
   footer.appendChild(actions);
 
   // Caption
@@ -204,7 +234,7 @@ const CAPTION_LIMIT = 80;
      const closeBtn = clone.querySelector('.close-panel');
      const sendBtn = clone.querySelector('.send-comment');
      const input = clone.querySelector('.comment-input');
-     const content = clone.querySelector('.comment-content');
+     const content = clone.querySelector('.comment-container');
      
 
  card.appendChild(clone);
@@ -213,31 +243,38 @@ const CAPTION_LIMIT = 80;
   backDrop.style.display = 'block';
   panel.style.height = '300px';
   panel.style.transition = 'height 0.5s ease'; 
+  document.body.style.overflow = 'hidden';
 });
 
 closeBtn.addEventListener('click', () => {
   backDrop.style.display = 'none';
   panel.style.display = 'none';
+  document.body.style.overflow = 'visible';
 });
 
 backDrop.addEventListener('click', () => {
   backDrop.style.display = 'none';
   panel.style.height = '0px';
   panel.style.transition = 'height 0.5s ease'; 
+  document.body.style.overflow = 'visible';
 
 }); 
      
      
   sendBtn.addEventListener('click', () => {
-    const text = input.value.trim();
-    if (!text) return;
+    const value = input.value.trim();
+    if (!value) return;
 
-    const commentEl = document.createElement('div');
-    commentEl.className = 'single-comment';
-    commentEl.textContent = text;
+    const commentData = {
+      user: {
+        name: 'bolu', 
+        avater: 'image/image1.jpg'
+      },
+      text: value
+    };
 
-    content.appendChild(commentEl);
-    input.value = '';
+    renderComment(commentData, content); //pass the correct container
+    input.value = ''; // clear input
   });
      
   return card;
@@ -253,7 +290,34 @@ backDrop.addEventListener('click', () => {
     // INITIAL render
     renderFeed();
 
-    
+    function renderComment(data, container){
+      const singleComment = document.createElement('div');
+      singleComment.className = 'single-comment';
+
+      const avater = document.createElement('div');
+      avater.className = 'comment-avater';
+      avater.style.backgroundImage = `url('${data.user.avater}')`;
+
+      const  body = document.createElement('div');
+      body.className = 'comment-body';
+
+      const name = document.createElement('div');
+      name.className = 'comment-name';
+      name.textContent = data.user.name;
+
+      const text = document.createElement('div');
+      text.className = 'comment-text';
+      text.textContent = data.text;
+
+      body.appendChild(name);
+      body.appendChild(text);
+
+      singleComment.appendChild(avater);
+      singleComment.appendChild(body);
+
+      container.appendChild(singleComment);
+
+    }
 
     /* -------------------------
        UI functions (kept same behaviour)
