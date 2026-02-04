@@ -241,8 +241,7 @@ const CAPTION_LIMIT = 80;
      
   commentBtn.addEventListener('click', () => {
   backDrop.style.display = 'block';
-  panel.style.height = '300px';
-  panel.style.transition = 'height 0.5s ease'; 
+  panel.style.height = '400px';
   document.body.style.overflow = 'hidden';
 });
 
@@ -255,25 +254,34 @@ closeBtn.addEventListener('click', () => {
 backDrop.addEventListener('click', () => {
   backDrop.style.display = 'none';
   panel.style.height = '0px';
-  panel.style.transition = 'height 0.5s ease'; 
   document.body.style.overflow = 'visible';
 
 }); 
      
      
+
   sendBtn.addEventListener('click', () => {
     const value = input.value.trim();
     if (!value) return;
 
     const commentData = {
       user: {
-        name: 'bolu', 
-        avater: 'image/image1.jpg'
+        name: 'Afolabi Boluwatife', 
+        avater: 'image/image1.jpg',
+        likeIcon: 'icon/like.png',
+        likedIcon: 'icon/liked.png',
+        commentReply: 'Reply'
       },
-      text: value
+
+      text: value,
+
+      createdAt: Date.now()
     };
+     
+    
 
     renderComment(commentData, content); //pass the correct container
+    
     input.value = ''; // clear input
   });
      
@@ -291,6 +299,11 @@ backDrop.addEventListener('click', () => {
     renderFeed();
 
     function renderComment(data, container){
+
+      let likeCommentCount = 0;
+      let holdTimer; 
+      let tabOpen = false;
+
       const singleComment = document.createElement('div');
       singleComment.className = 'single-comment';
 
@@ -309,8 +322,126 @@ backDrop.addEventListener('click', () => {
       text.className = 'comment-text';
       text.textContent = data.text;
 
+      const likeIcon = document.createElement('div');
+      likeIcon.className = 'comment-like-icon';
+      likeIcon.style.backgroundImage = `url('${data.user.likeIcon}')`;
+       
+      const likedIcon = document.createElement('div');
+      likedIcon.className = 'comment-liked-icon';
+      likedIcon.style.backgroundImage = `url('${data.user.likedIcon}')`;
+     
+      likeIcon.addEventListener('click', ()=>{
+       likeCommentCount ++;
+       countEl.textContent = likeCommentCount;
+       countEl.style.display = 'block';
+       likeIcon.style.display = 'none';
+       likedIcon.style.display = 'block';
+});
+
+      likedIcon.addEventListener('click', ()=>{
+       likeCommentCount --;
+       countEl.textContent = likeCommentCount;
+       countEl.style.display = 'none';
+       likeIcon.style.display = 'block';
+       likedIcon.style.display = 'none';
+});
+       
+      const commentResponse = document.createElement('div');
+       commentResponse.className = 'comment-response';
+
+      const countEl = document.createElement('span');
+      countEl.className = 'like-comment-count';
+      countEl.textContent = likeCommentCount;
+
+
+
+      const commentReply = document.createElement('div');
+      commentReply.className = 'comment-reply';
+      commentReply.textContent = data.user.commentReply;
+       
+      commentReply.addEventListener('click', ()=>{
+       alert('very soon');
+
+});
+
+      const time = document.createElement('div');
+      time.className = 'comment-time';
+      time.dataset.time = new Date().toISOString();
+      time.textContent = 'Now';
+
+
+    function timeAgo(time){
+      const past = new Date(time);
+      const now = new Date();
+
+      const seconds = Math.floor((now - past) /1000);
+
+      if (isNaN(seconds)) return 'Now';
+      
+      if (seconds < 60) return `${seconds}s ago`;
+
+      const minutes = Math.floor(seconds / 60);
+      if (minutes < 60) return `${minutes}m ago`;
+
+      const hours = Math.floor(minutes / 60);
+      if (hours < 24) return `${hours}h ago`;
+
+      const days = Math.floor(hours / 24);
+      if (days < 7) return `${days}d ago`;
+
+      const weeks = Math.floor(days / 7);
+      return  `${weeks}w ago`;
+
+    }
+
+    setInterval(()=>{
+    document.querySelectorAll('[data-time]').forEach(el =>{
+      el.textContent = timeAgo(el.dataset.time);
+    });
+    }, 60000);
+
+
+     const reactTab = document.getElementById('react-tab');
+      
+      likeIcon.addEventListener('mousedown', ()=>{
+     holdTimer = setTimeout(()=>{
+      reactTab.style.display = 'grid';
+       tabOpen = true;
+      }, 500);
+ });
+
+
+      likeIcon.addEventListener('mouseup', ()=>{
+     clearTimeout(holdTimer);
+ });
+ 
+     likeIcon.addEventListener('click', ()=>{
+     if(tabOpen) return;
+     console.log('normal like');
+ });
+
+    
+      reactTab.addEventListener('click', ()=>{
+      const react = e.target.dataset.react;
+      if(!react)return;
+      console.log('Reacted with', react);
+      reactTab.style.display = 'none';
+      tabOpen = false;
+ });
+
+
+
+      commentResponse.appendChild(commentReply);
+      
+
       body.appendChild(name);
       body.appendChild(text);
+      body.appendChild(likeIcon);
+      body.appendChild(likedIcon);
+      body.appendChild(commentResponse);
+      body.appendChild(countEl);
+      body.appendChild(reactTab);
+      body.appendChild(time);
 
       singleComment.appendChild(avater);
       singleComment.appendChild(body);
@@ -318,9 +449,10 @@ backDrop.addEventListener('click', () => {
       container.appendChild(singleComment);
 
     }
-
+     
+    
     /* -------------------------
-       UI functions (kept same behaviour)
+      functions (kept same behaviour)
        ------------------------- */
     function showEvent(){
       document.getElementById('event').style.width = '100%';
@@ -401,48 +533,9 @@ document.getElementById('like').style.display = "none";
  }
 
 
- const likeComment = document.getElementById('likeComment');
- const likedComment = document.getElementById('likedComment');
+
  
- likeComment.onclick = () =>{
-  likeComment.style.display = 'none';
-  likedComment.style.display = 'block';
- }
-
- likedComment.onclick = () =>{
-  likeComment.style.display = 'block';
-  likedComment.style.display = 'none';
- }
-
- let holdTimer; 
- let tabOpen = false;
-
- likeComment.addEventListener('mousedown', ()=>{
-  holdTimer = setTimeout(()=>{
-    reactTab.style.display = 'grid';
-    tabOpen = true;
-  }, 500);
- });
-
-
- likeComment.addEventListener('mouseup', ()=>{
-  clearTimeout(holdTimer);
- });
  
- likeComment.addEventListener('click', ()=>{
-  if(tabOpen) return;
-  console.log('normal like');
- });
-
-
- reactTab.addEventListener('click', ()=>{
-  const react = e.target.dataset.react;
-  if(!react)return;
-  console.log('Reacted with', react);
-  reactTab.style.display = 'none';
-  tabOpen = false;
- });
-
  
 
   

@@ -70,66 +70,7 @@
   </div>
 
   <!-- Overlays & sheets: dot menu, share, report -->
-  <div onclick="Closedot()" class="overlay" id="closedot"></div>
-
-  <div id="opendot" class="sheet" aria-hidden="true">
-    <label for="Save">
-      <div onclick="Save()" style="display: flex; padding: 15px 10px; gap: 20px; align-items:center;">
-        <button style="background-image: url('icon/save.png'); background-size: cover; background-position: center; width: 30px; height: 30px; border: none; background-color: whitesmoke;"></button>
-        <div id="saved" style="text-align: left; font-size: 20px; font-weight: bold;">Save</div>
-      </div>
-    </label>
-
-    <label for="Share">
-      <div onclick="Share()" style="display: flex; padding: 10px 10px 15px 10px; gap: 20px; align-items:center;">
-        <button style="background-image: url('icon/share.png'); background-size: cover; background-position: center; width: 30px; height: 30px; border: none; background-color: whitesmoke;"></button>
-        <div style="text-align: left; font-size: 20px; font-weight: bold;">Share</div>
-      </div>
-    </label>
-
-    <label for="repost">
-      <div onclick="Repost()" style="display: flex; padding: 10px 10px 15px 10px; gap: 20px; align-items:center;">
-        <button style="background-image: url('icon/repost.png'); background-size: cover; background-position: center; width: 30px; height: 30px; border: none; background-color: whitesmoke;"></button>
-        <div style="text-align: left; font-size: 20px; font-weight: bold;">Repost</div>
-      </div>
-    </label>
-
-    <label for="report">
-      <div onclick="Report()" style="display: flex; padding: 10px 10px 20px 10px; gap: 20px; align-items:center;">
-        <button style="background-image: url('icon/report.png'); background-size: cover; background-position: center; width: 30px; height: 30px; border: none; background-color: whitesmoke;"></button>
-        <div style="text-align: left; font-size: 20px; font-weight: bold;">Report</div>
-      </div>
-    </label>
-  </div>
-
-  <div onclick="CloseShare()" id="close-share" class="overlay"></div>
-  <div id="open-share" class="sheet" aria-hidden="true">
-    <label for="share-friends">
-      <div onclick="ShareFriends()" style="display: flex; padding: 15px 10px 5px 10px; gap: 20px; align-items:center;">
-        <button style="background-image: url('icon/friends1.png'); background-size: cover; background-position: center; width: 30px; height: 30px; border: none; background-color: whitesmoke;"></button>
-        <div style="font-size: 20px; font-weight: bold;">Share to friends</div>
-      </div>
-    </label>
-
-    <label for="share-groups">
-      <div onclick="ShareGroups()" style="display: flex; padding: 5px 10px 15px 10px; gap: 20px; align-items:center;">
-        <button style="background-image: url('icon/groups.png'); background-size: cover; background-position: center; width: 30px; height: 30px; border: none; background-color: whitesmoke;"></button>
-        <div style="font-size: 20px; font-weight: bold;">Share to groups</div>
-      </div>
-    </label>
-  </div>
-
-  <div onclick="CloseReport()" id="close-report" class="overlay"></div>
-  <div id="open-report" class="sheet" aria-hidden="true">
-    <table style="padding: 10px; width: 100%;">
-      <th style="padding: 8px; text-align: center; font-size: 18px; font-weight: bold;">Why are you reporting this post?</th>
-      <tr><td style="border-bottom: 1px solid lightgrey;"><div style="padding: 8px; text-align: left; font-size: 18px;">I don't want to see this post</div></td></tr>
-      <tr><td style="border-bottom: 1px solid lightgrey;"><div style="padding: 8px; text-align: left; font-size: 18px;">Adult content</div></td></tr>
-      <tr><td style="border-bottom: 1px solid lightgrey;"><div style="padding: 8px; text-align: left; font-size: 18px;">Bullying, harassment or abuse</div></td></tr>
-      <tr><td style="border-bottom: 1px solid lightgrey;"><div style="padding: 8px; text-align: left; font-size: 18px;">Scam, fraud or false information</div></td></tr>
-    </table>
-  </div>
-
+  
 
   <!--Panel Template--//-->
 <template id="comment-template">
@@ -137,6 +78,10 @@
 
   <div class="comment-panel">
     <div class="close-panel"></div>
+
+    <div class="drag-handle">
+      <div style="width: 40px; height: 10px; border-radius: 10px; background-color: gainsboro;"></div>
+    </div>
 
     <div class="panel-header">Comments</div>
          
@@ -163,15 +108,14 @@
 </template>
 
 
-<div id="reactTab">
+
+<div id="react-tab">
 <div data-react="faceLove">😍</div>
 <div data-react="laugh">😁</div>
 <div data-react="ok">👌</div>
 <div>👌</div>
 <div>👌</div>
 <div>👌</div>
-
-</div>
 </div>
   
   <button id="followingAlert"></button>
