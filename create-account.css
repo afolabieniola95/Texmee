@@ -105,8 +105,8 @@ button:hover {
   }
   
  .input-error {
-  border: 2px solid red;
-  box-shadow: 1px 1px 1px blue;
+  border: 2px double  red;
+  box-shadow: 1px 1px 2px red;
   animation: shake 0.3s;
  }
  
