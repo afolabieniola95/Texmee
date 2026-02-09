@@ -117,14 +117,17 @@ profilePic.addEventListener('change', () => {
 });
 
 function shakeInput(input){
-input.classList.remove("input-error"); //reset
+input.classList.remove('input-error'); //reset
 void input.offsetWidth; //force reflow
-input.classList.add("input-error");
+input.classList.add('input-error');
 }
-document.addEventListener('DOMcontentLoaded', ()=>{
+
+document.addEventListener('DOMContentLoaded', ()=>{
  document.querySelectorAll('input').forEach(input =>{
       input.addEventListener('input', ()=>{
         input.classList.remove('input-error');
       });
     });
 });
+
+
