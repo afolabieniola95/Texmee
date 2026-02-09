@@ -49,10 +49,11 @@ if(currentStep === 1){
 
    //step 3 validation
    if(currentStep === 2){
-    const gender = document.getElementById('gender').value;
+    const gender = document.getElementById('gender');
 
-    if(!gender){
-      alert('Please select your gender');
+    if(!gender.value){
+      shakeInput(gender);
+     gender.focus();
       return; //stop here
     }
    }
