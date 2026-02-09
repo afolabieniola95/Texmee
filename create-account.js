@@ -62,22 +62,28 @@ if(currentStep === 1){
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
 
-    if(!email.value.trim(){
+    if(!email.value.trim()){
       shakeInput(email);
      email.focus();
      return; //stop here
     }
     
-   if(!phone.value.trim(){
+    if(!phone.value.trim()){
       shakeInput(phone);
      phone.focus();
      return; //stop here
-   }
+    }
 }
 
    if(currentStep === 4){
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('password');
   
+  if(!password.value){
+      shakeInput(password);
+     password.focus();
+     return; //stop here
+    }
+    
     if(password.length < 6){
       alert('Password must be at least 6 characters');
       return; //stop here
