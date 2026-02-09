@@ -76,13 +76,8 @@ if(currentStep === 1){
 }
 
    if(currentStep === 4){
-    const password = document.getElementById('password');
-    if(!password.value){
-      shakeInput(password);
-     password.focus();
-     return; //stop here
-   }
-    
+    const password = document.getElementById('password').value;
+  
     if(password.length < 6){
       alert('Password must be at least 6 characters');
       return; //stop here
