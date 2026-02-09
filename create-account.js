@@ -30,8 +30,6 @@ nextBtn.forEach((btn, index) => {
      lastName.focus();
       return; //stop here
     }
-
-   
    }
 
 
@@ -79,7 +77,7 @@ if(currentStep === 1){
 
    if(currentStep === 4){
     const password = document.getElementById('password');
-    if(!password.value{
+    if(!password.value){
       shakeInput(password);
      password.focus();
      return; //stop here
