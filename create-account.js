@@ -119,10 +119,10 @@ profilePic.addEventListener('change', () => {
 function shakeInput(input){
 input.classList.remove("input-error"); //reset
 void input.offsetWidth; //force reflow
-input.classList.add("input-error");0
+input.classList.add("input-error");
 }
 
- document.querySelectorAll(input).forEach(input =>{
+ document.querySelectorAll('input').forEach(input =>{
       input.addEventListener('input', ()=>{
         input.classList.remove('input-error');
       });
