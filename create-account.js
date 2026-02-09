@@ -121,9 +121,10 @@ input.classList.remove("input-error"); //reset
 void input.offsetWidth; //force reflow
 input.classList.add("input-error");
 }
-
+document.addEventListener('DOMcontentLoaded', ()=>{
  document.querySelectorAll('input').forEach(input =>{
       input.addEventListener('input', ()=>{
         input.classList.remove('input-error');
       });
     });
+});
