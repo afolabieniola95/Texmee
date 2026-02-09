@@ -38,10 +38,11 @@ nextBtn.forEach((btn, index) => {
 //step 2 validation
 
 if(currentStep === 1){
-  const dob = document.getElementById('dob').value.trim();
+  const dob = document.getElementById('dob');
 
-    if(!dob){
-      alert('Please select your date of birth');
+    if(!dob.value.trim()){
+     shakeInput(firstName);
+     dob.focus();
       return; //stop here
     }
    }
