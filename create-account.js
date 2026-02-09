@@ -130,4 +130,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
 });
 
+ //Toggle password visibility
+function togglePassword(){
+ 
+  const input = document.getElementById('passwordInput');
+  const toggle = document.querySelector('.togglePassword');
+  
+  if(input.type === 'password'){
+    input.type = 'text';
+    toggle.textContent = 'Hide';
+  }else{
+    input.type = 'password';
+    toggle.textContent = 'Show';
+  }
+}
 
