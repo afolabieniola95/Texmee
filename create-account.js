@@ -41,7 +41,7 @@ if(currentStep === 1){
   const dob = document.getElementById('dob');
 
     if(!dob.value.trim()){
-     shakeInput(firstName);
+     shakeInput(dob);
      dob.focus();
       return; //stop here
     }
