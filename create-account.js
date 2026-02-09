@@ -1,30 +1,102 @@
 const steps = document.querySelectorAll('.form-step');
-const stepIndicators = document.querySelectorAll('.step');
+const nextBtn = document.querySelectorAll('.next-btn');
+const backBtn = document.querySelectorAll('.back-btn');
 
-document.querySelectorAll('.next-btn').forEach(btn => {
+let  currentStep = 0;
+
+function showStep(index){
+  steps.forEach((step,i) =>{
+    step.classList.toggle('active', i === index);
+  });
+}
+
+nextBtn.forEach((btn, index) => {
   btn.addEventListener('click', () => {
+
+   // Step 1 validation
+
+   if(currentStep === 0){
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+
+    if(!firstName.value.trim()){
+     shakeInput(firstName);
+     firstName.focus();
+      return; //stop here
+    }
+
+    if(!lastName.value.trim()){
+     shakeInput(lastName);
+     lastName.focus();
+      return; //stop here
+    }
+
+   
+   }
+
+
+//step 2 validation
+
+if(currentStep === 1){
+  const dob = document.getElementById('dob').value.trim();
+
+    if(!dob){
+      alert('Please select your date of birth');
+      return; //stop here
+    }
+   }
+
+   //step 3 validation
+   if(currentStep === 2){
+    const gender = document.getElementById('gender').value;
+
+    if(!gender){
+      alert('Please select your gender');
+      return; //stop here
+    }
+   }
+
+   //step 4 validation
+
+   if(currentStep === 3){
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if(!email || !phone){
+      alert('Please enter your email and phone number');
+      return; //stop here
+    }
+   }
+
+   if(currentStep === 4){
+    const password = document.getElementById('password').value;
     
+    if(password.length < 6){
+      alert('Password must be at least 6 characters');
+      return; //stop here
+    }
+   }
+
+
     if (currentStep < steps.length - 1) {
-      steps[currentStep].classList.remove('active');
       currentStep++;
-      steps[currentStep].classList.add('active');
-      updateProgressBar();
+      showStep(currentStep);
     }
   });
-
-  
 });
+  
 
-document.querySelectorAll('.back-btn').forEach(btn => {
+backBtn.forEach(btn => {
   btn.addEventListener('click', () => {
     if (currentStep > 0) {
-      steps[currentStep].classList.remove('active');
       currentStep--;
-      steps[currentStep].classList.add('active');
-      updateProgressBar();
+      showStep(currentStep);
     }
   });
 });
+
+
+
 
 // Preview profile and cover
 const profilePic = document.getElementById('profilePic');
@@ -43,3 +115,15 @@ profilePic.addEventListener('change', () => {
     reader.readAsDataURL(file);
   }
 });
+
+function shakeInput(input){
+input.classList.remove("input-error"); //reset
+void input.offsetWidth; //force reflow
+input.classList.add("input-error");0
+}
+
+ document.querySelectorAll(input).forEach(input =>{
+      input.addEventListener('input', ()=>{
+        input.classList.remove('input-error');
+      });
+    });

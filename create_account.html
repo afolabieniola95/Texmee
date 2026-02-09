@@ -8,13 +8,13 @@
 <body>
   <div class="container">
   
-    <form action="sign-up.php" method="POST" enctype="multipart/form-data" id="accountForm">
+    <form action="sign_up.php" method="POST" enctype="multipart/form-data" id="accountForm">
 
       <!-- Step 1 -->
       <div class="form-step active" id="step1">
 
         <div style="display: flex; align-items: center;  gap: 40px; text-align: center;">
-      <img class="back-btn"  src="icon/backarrow.png">
+      <img onclick="history.back()"  src="icon/backarrow.png" style="width: 20px; height: 20px;">
        <h3>What's your name?</h3>
 </div>
 
@@ -23,6 +23,7 @@
 
         <label>Last Name</label>
         <input type="text" id="lastName" name="last_name" required>
+        
 
         <div class="btn-group">
         <button type="button" class="next-btn">Next</button>
@@ -124,6 +125,6 @@
     </form>
   </div>
 
-  <script src="create-account.js"></script>
+  <script src="create-account.js" defer></script>
 </body>
 </html>
