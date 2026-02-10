@@ -81,15 +81,30 @@ if(currentStep === 1){
     }
    }
 
+
    if(currentStep === 4){
     const password = document.getElementById('password');
-    
-    if(password.value.length < 6){
-      shakeInput(password);
-      password.focus();
-       return; //stop here
+    const passwordInput = document.getElementById('password');
+
+  if (!isStrongPassword(password.value)) {
+    shakeInput(password);
+    password.focus();
+    return;
+  }
+  
+if (passwordInput) {
+  passwordInput.addEventListener('input', () => {
+    if (isStrongPassword(passwordInput.value)) {
+      passwordInput.classList.remove('input-error');
     }
-   }
+  });
+}
+
+function isStrongPassword(password) {
+  return /^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(password);
+}
+}
+  
 
     if (currentStep < steps.length - 1) {
       currentStep++;
