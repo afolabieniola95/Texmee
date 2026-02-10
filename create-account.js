@@ -23,7 +23,7 @@ nextBtn.forEach(btn => {
     const lastName = document.getElementById('lastName');
 
     if(!firstName.value.trim()){
-     shakeInput(firstName, 'Please what's your first');
+     shakeInput(firstName, 'Please whats your first');
      firstName.focus();
       return; //stop here
     }
