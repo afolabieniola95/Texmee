@@ -64,11 +64,30 @@ if(currentStep === 1){
    if(currentStep === 3){
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+
 
    if (!isValidEmail(email.value.trim())) {
   shakeInput(email);
   email.focus();
   return;
+}
+
+if (emailInput) {
+  emailInput.addEventListener('input', () => {
+    const value = emailInput.value.trim();
+
+    if (!value) {
+      emailInput.classList.remove('input-error');
+      return;
+    }
+
+    if (isValidEmail(value)) {
+      emailInput.classList.remove('input-error');
+    } else {
+      emailInput.classList.add('input-error');
+    }
+  });
 }
 
     function isValidEmail(email) {
