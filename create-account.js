@@ -65,7 +65,7 @@ if(currentStep === 1){
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
 
-    if(!email || !phone){
+    if(!email.value.trim()){
       alert('Please enter your email and phone number');
       return; //stop here
     }
