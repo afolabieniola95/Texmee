@@ -66,7 +66,7 @@ if(currentStep === 1){
     const phone = document.getElementById('phone').value.trim();
 
     if(!email.value.trim()){
-      alert('Please enter your email and phone number');
+      shae
       return; //stop here
     }
    }
