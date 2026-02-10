@@ -70,13 +70,12 @@ if(currentStep === 1){
       email.focus();
       return; //stop here
     }
-    const email = document.getElementById('email');
-
-if (!isValidEmail(email.value.trim())) {
+    if (!isValidEmail(email.value.trim())) {
   shakeInput(email);
   email.focus();
   return;
 }
+
     function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
