@@ -9,6 +9,7 @@ function showStep(index){
     step.classList.toggle('active', i === index);
   });
 }
+showStep(currentStep);
 
 nextBtn.forEach(btn => {
   btn.addEventListener('click', () => {
