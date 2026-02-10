@@ -10,23 +10,8 @@ function showStep(index){
   });
 }
 
-function shakeInput(input){
-input.classList.remove('input-error'); //reset
-void input.offsetWidth; //force reflow
-input.classList.add('input-error');
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
- document.querySelectorAll('input,select').forEach(input =>{
-      input.addEventListener('input', ()=>
-        input.classList.remove('input-error'));
-      });
-    });
-
-
-
-nextBtn.forEach(() => {
-  addEventListener('click', () => {
+nextBtn.forEach(btn => {
+  btn.addEventListener('click', () => {
 
    // Step 1 validation
 
@@ -45,6 +30,8 @@ nextBtn.forEach(() => {
      lastName.focus();
       return; //stop here
     }
+
+   
    }
 
 
@@ -62,11 +49,10 @@ if(currentStep === 1){
 
    //step 3 validation
    if(currentStep === 2){
-    const gender = document.getElementById('gender');
+    const gender = document.getElementById('gender').value;
 
-    if(!gender.value){
-      shakeInput(gender);
-     gender.focus();
+    if(!gender){
+      alert('Please select your gender');
       return; //stop here
     }
    }
@@ -74,31 +60,22 @@ if(currentStep === 1){
    //step 4 validation
 
    if(currentStep === 3){
-    const email = document.getElementById('email');
-    const phone = document.getElementById('phone');
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
 
-    if(!email.value.trim()){
-      shakeInput(email);
-     email.focus();
-     return; //stop here
+    if(!email || !phone){
+      alert('Please enter your email and phone number');
+      return; //stop here
     }
-    
-    if(!phone.value.trim()){
-      shakeInput(phone);
-     phone.focus();
-     return; //stop here
-    }
-}
+   }
 
    if(currentStep === 4){
-    const password = document.getElementById('password');
-  
-  if(password.value.length < 6){
-      shakeInput(password);
-     password.focus();
-     return; //stop here
-    }
+    const password = document.getElementById('password').value;
     
+    if(password.length < 6){
+      alert('Password must be at least 6 characters');
+      return; //stop here
+    }
    }
 
 
@@ -140,19 +117,30 @@ profilePic.addEventListener('change', () => {
   }
 });
 
+function shakeInput(input){
+input.classList.remove('input-error'); //reset
+void input.offsetWidth; //force reflow
+input.classList.add('input-error');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+ document.querySelectorAll('input').forEach(input =>{
+      input.addEventListener('input', ()=>{
+        input.classList.remove('input-error');
+      });
+    });
+});
 
  //Toggle password visibility
 function togglePassword(){
- 
-  const input = document.getElementById('passwordInput');
+  const input = document.getElementById('password');
   const toggle = document.querySelector('.togglePassword');
-  
+
   if(input.type === 'password'){
     input.type = 'text';
     toggle.textContent = 'Hide';
-  }else{
+  } else {
     input.type = 'password';
     toggle.textContent = 'Show';
   }
 }
-
