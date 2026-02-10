@@ -31,8 +31,6 @@ nextBtn.forEach(btn => {
      lastName.focus();
       return; //stop here
     }
-
-   
    }
 
 
