@@ -52,8 +52,7 @@ if(currentStep === 1){
     const gender = document.getElementById('gender').value;
 
     if(!gender){
-      alert('Please select your gender');
-      return; //stop here
+      if
     }
    }
 
