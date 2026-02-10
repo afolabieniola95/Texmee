@@ -19,12 +19,17 @@
 </div>
 
         <label>First Name</label>
+        <div class="input-wrapper">
         <input type="text" id="firstName" name="first_name" autocapitalize="words" required>
-
+         <span class="error-text"></span>
+         </div>
+         
         <label>Last Name</label>
+      <div class="input-wrapper">
         <input type="text" id="lastName" name="last_name" autocapitalize="words" required>
+        <span class="error-text"></span>
+        </div>
         
-
         <div class="btn-group">
         <button type="button" class="next-btn">Next</button>
         </div>
@@ -39,8 +44,11 @@
 </div>
 
        <label>Date of Birth</label>
+       <div class="input-wrapper">
         <input type="date" name="dob" id="dob">
-
+         <span class="error-text"></span>
+         </div>
+         
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -55,13 +63,16 @@
 </div>
 
        <label>Gender</label>
+       <div class="input-wrapper">
         <select id="gender" name="gender">
           <option value="">Select Gender</option>
           <option>Male</option>
           <option>Female</option>
           <option>Other</option>
         </select>
-
+        <span class="error-text"></span>
+        </div>
+        
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -76,11 +87,16 @@
 </div>
 
         <label>Email</label>
+        <div class="input-wrapper">
         <input type="email" id="email" name="email" required>
-
+         <span class="error-text"></span>
+         
         <label>Phone Number</label>
+        <div class="input-wrapper">
         <input type="tel" id="phone" name="phone" required>
-
+        <span class="error-text"></span>
+        </div>
+        
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -95,9 +111,12 @@
 </div>
 
         <label>Password</label>
-    
+       <div class="input-wrapper">
         <input type="password" id="password" name="password" required>
-         <div class="toggle" onclick="togglePassword()">Show</div>
+         <span class="error-text"></span>
+         </div>
+         
+     <div class="toggle" onclick="togglePassword()">Show</div>
       
        
         <div class="btn-group">
