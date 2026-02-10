@@ -65,7 +65,7 @@ if(currentStep === 1){
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
 
-    if (!isValidEmail(email.value.trim())) {
+   if (!isValidEmail(email.value.trim())) {
   shakeInput(email);
   email.focus();
   return;
