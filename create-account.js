@@ -71,6 +71,8 @@ if(currentStep === 1){
       return; //stop here
     }
     
+    
+    
     function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
