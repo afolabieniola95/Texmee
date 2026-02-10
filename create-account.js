@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', ()=>{
+  
 const steps = document.querySelectorAll('.form-step');
 const nextBtn = document.querySelectorAll('.next-btn');
 const backBtn = document.querySelectorAll('.back-btn');
@@ -78,7 +80,6 @@ if(currentStep === 1){
     }
    }
 
-
     if (currentStep < steps.length - 1) {
       currentStep++;
       showStep(currentStep);
@@ -86,7 +87,6 @@ if(currentStep === 1){
   });
 });
   
-
 backBtn.forEach(btn => {
   btn.addEventListener('click', () => {
     if (currentStep > 0) {
@@ -96,8 +96,11 @@ backBtn.forEach(btn => {
   });
 });
 
-
-
+document.querySelectorAll('input').forEach(input =>{
+      input.addEventListener('input', ()=>{
+        input.classList.remove('input-error');
+      });
+    });
 
 // Preview profile and cover
 const profilePic = document.getElementById('profilePic');
@@ -123,13 +126,8 @@ void input.offsetWidth; //force reflow
 input.classList.add('input-error');
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
- document.querySelectorAll('input').forEach(input =>{
-      input.addEventListener('input', ()=>{
-        input.classList.remove('input-error');
-      });
-    });
-});
+
+ 
 
  //Toggle password visibility
 function togglePassword(){
