@@ -10,8 +10,23 @@ function showStep(index){
   });
 }
 
-nextBtn.forEach((btn, index) => {
-  btn.addEventListener('click', () => {
+function shakeInput(input){
+input.classList.remove('input-error'); //reset
+void input.offsetWidth; //force reflow
+input.classList.add('input-error');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+ document.querySelectorAll('input,select').forEach(input =>{
+      input.addEventListener('input', ()=>
+        input.classList.remove('input-error'));
+      });
+    });
+
+
+
+nextBtn.forEach(() => {
+  addEventListener('click', () => {
 
    // Step 1 validation
 
@@ -78,16 +93,12 @@ if(currentStep === 1){
    if(currentStep === 4){
     const password = document.getElementById('password');
   
-  if(!password.value){
+  if(password.value.length < 6){
       shakeInput(password);
      password.focus();
      return; //stop here
     }
     
-    if(password.length < 6){
-      alert('Password must be at least 6 characters');
-      return; //stop here
-    }
    }
 
 
@@ -129,19 +140,6 @@ profilePic.addEventListener('change', () => {
   }
 });
 
-function shakeInput(input){
-input.classList.remove('input-error'); //reset
-void input.offsetWidth; //force reflow
-input.classList.add('input-error');
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
- document.querySelectorAll('input').forEach(input =>{
-      input.addEventListener('input', ()=>{
-        input.classList.remove('input-error');
-      });
-    });
-});
 
  //Toggle password visibility
 function togglePassword(){
