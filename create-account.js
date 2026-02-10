@@ -141,17 +141,25 @@ backBtn.forEach(btn => {
   });
 });
 
-function shakeInput(input){
-input.classList.remove('input-error'); //reset
-void input.offsetWidth; //force reflow
-input.classList.add('input-error');
+function shakeInput(input, message = 'This field is required') {
+  input.classList.remove('input-error'); // reset
+  void input.offsetWidth; // force reflow
+  input.classList.add('input-error');
+
+  const wrapper = input.closest('.input-wrapper');
+  if (!wrapper) return;
+  const errorText = wrapper.querySelector('.error-text');
+  if (errorText) errorText.textContent = message;
 }
 
-document.querySelectorAll('input').forEach(input =>{
-      input.addEventListener('input', ()=>{
-        input.classList.remove('input-error');
-      });
-    });
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    input.classList.remove('input-error');
+    const wrapper = input.closest('.input-wrapper');
+    const errorText = wrapper?.querySelector('.error-text');
+    if (errorText) errorText.textContent = '';
+  });
+});
 
 // Preview profile and cover
 const profilePic = document.getElementById('profilePic');
