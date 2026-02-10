@@ -49,7 +49,7 @@ if(currentStep === 1){
 
    //step 3 validation
    if(currentStep === 2){
-    const gender = document.getElementById('gender').value;
+    const gender = document.getElementById('gender');
 
     if(!gender.value){
       shakeInput(dob);
