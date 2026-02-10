@@ -23,13 +23,13 @@ nextBtn.forEach(btn => {
     const lastName = document.getElementById('lastName');
 
     if(!firstName.value.trim()){
-     shakeInput(firstName, 'Please enter your first name');
+     shakeInput(firstName, 'Please enter your first name.');
      firstName.focus();
       return; //stop here
     }
 
     if(!lastName.value.trim()){
-     shakeInput(lastName, 'Please enter your last name');
+     shakeInput(lastName, 'Please enter your last name.');
      lastName.focus();
       return; //stop here
     }
@@ -42,7 +42,7 @@ if(currentStep === 1){
   const dob = document.getElementById('dob');
 
     if(!dob.value.trim()){
-     shakeInput(dob);
+     shakeInput(dob, 'Please enter your date of birth.');
      dob.focus();
       return; //stop here
     }
@@ -53,7 +53,7 @@ if(currentStep === 1){
     const gender = document.getElementById('gender');
 
     if(!gender.value){
-      shakeInput(gender);
+      shakeInput(gender, 'Please select gender.');
      gender.focus();
       return; //stop here
     }
@@ -68,7 +68,7 @@ if(currentStep === 1){
 
 
    if (!isValidEmail(email.value.trim())) {
-  shakeInput(email);
+  shakeInput(email, 'Please enter your email.');
   email.focus();
   return;
 }
@@ -94,7 +94,7 @@ if (emailInput) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
     if(!phone.value.trim()){
-      shakeInput(phone);
+      shakeInput(phone, 'Please enter your mobile number.');
       phone.focus();
       return; //stop here
     }
@@ -106,7 +106,7 @@ if (emailInput) {
     const passwordInput = document.getElementById('password');
 
   if (!isStrongPassword(password.value)) {
-    shakeInput(password);
+    shakeInput(password, 'Please create strong password.');
     password.focus();
     return;
   }
