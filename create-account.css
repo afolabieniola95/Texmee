@@ -114,7 +114,8 @@ button:hover {
  
  .error-text{
    display: block;
-   font-size: 12px;
+   font-size: 14px;
+   font-family: Arial,sans-serif,Trebuchet MS;
    color: #f10f;
    height: 16px;
    margin-top: 2px;
