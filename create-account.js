@@ -125,7 +125,7 @@ profilePic.addEventListener('change', () => {
     reader.readAsDataURL(file);
   }
 });
-})
+});
 
 
 
