@@ -41,8 +41,9 @@ input, select {
     margin: 3px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    	box-sizing: border-box;
+    box-sizing: border-box;
     outline: none;
+    text-transform: capitalize;
   }  
      
 
@@ -111,19 +112,13 @@ button:hover {
   animation: shake 0.3s;
  }
  
-         .password-input{
-            display: flex;
-            margin-bottom: 20px; 
-            width: 90%;   
-            padding: 5px;
-            height: 40px;
-            font-size: 14px; 
-            border-radius: 5px; 
-            border: 1.5px solid gray;
-            outline: none;
-            box-sizing: border-box;
-			      background-color: whitesmoke;
-        }
+ .error-text{
+   display: block;
+   font-size: 5rem;
+   color: #f10f;
+   height: 16px;
+   margin-top: 2px;
+ }
  
  .toggle {
       cursor: pointer;
@@ -134,7 +129,4 @@ button:hover {
 	  text-align: right;
     }
 
-input{
-  text-transform: capitalize;
-}
  
