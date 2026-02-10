@@ -129,6 +129,7 @@ profilePic.addEventListener('change', () => {
 
 
 
+
  
 
  //Toggle password visibility
