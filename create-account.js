@@ -70,7 +70,9 @@ if(currentStep === 1){
       email.focus();
       return; //stop here
     }
-    
+    function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
     if(!phone.value.trim()){
       shakeInput(phone);
       phone.focus();
