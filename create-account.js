@@ -51,8 +51,10 @@ if(currentStep === 1){
    if(currentStep === 2){
     const gender = document.getElementById('gender').value;
 
-    if(!gender){
-      if
+    if(!gender.value){
+      shakeInput(dob);
+     dob.focus();
+      return; //stop here
     }
    }
 
