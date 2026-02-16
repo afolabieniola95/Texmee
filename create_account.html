@@ -8,7 +8,7 @@
 <body>
   <div class="container">
   
-    <form action="sign_up.php" method="POST" enctype="multipart/form-data" id="accountForm">
+    <form action="sign_up.php" method="POST" enctype="multipart/form-data" id="accountForm" autocomplete="on">
 
       <!-- Step 1 -->
       <div class="form-step active" id="step1">
@@ -18,13 +18,18 @@
        <h3>What's your name?</h3>
 </div>
 
-        <label>First Name</label>
-        <input type="text" id="firstName" name="first_name" autocapitalize="words" required>
-
-        <label>Last Name</label>
-        <input type="text" id="lastName" name="last_name" autocapitalize="words" required>
+        <label for="firstName">First Name</label>
+        <div class="input-wrapper">
+        <input type="text" id="firstName" name="first_name" autocomplete="given-name" autocapitalize="words" required>
+         <span class="error-text"></span>
+         </div>
+         
+        <label for="lastName">Last Name</label>
+      <div class="input-wrapper">
+        <input type="text" id="lastName" name="last_name" autocomplete="family-name" autocapitalize="words" required>
+        <span class="error-text"></span>
+        </div>
         
-
         <div class="btn-group">
         <button type="button" class="next-btn">Next</button>
         </div>
@@ -38,9 +43,12 @@
        <h3>What's your date of birth?</h3>
 </div>
 
-       <label>Date of Birth</label>
-        <input type="date" name="dob" id="dob">
-
+       <label for="dob">Date of Birth</label>
+       <div class="input-wrapper">
+        <input type="date" name="dob" id="dob" placeholder="Date of birth">
+         <span class="error-text"></span>
+         </div>
+         
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -54,14 +62,17 @@
         <h3>What's your gender?</h3>
 </div>
 
-       <label>Gender</label>
+       <label for="gender">Gender</label>
+       <div class="input-wrapper">
         <select id="gender" name="gender">
           <option value="">Select Gender</option>
           <option>Male</option>
           <option>Female</option>
           <option>Other</option>
         </select>
-
+        <span class="error-text"></span>
+        </div>
+        
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -70,17 +81,23 @@
       <!-- Step 4 -->
       <div class="form-step" id="step4">
 
-  <div style="display: flex; align-items: center;  gap: 40px; text-align: center;">
+  <div style="display: flex; align-items: center;  gap: 20px; text-align: center;">
       <img class="back-btn"  src="icon/backarrow.png">   
       <h3>What's your mobile number and email?</h3>
 </div>
 
-        <label>Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label>Phone Number</label>
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+        <input type="email" id="email" name="email" autocomplete="new-email" autocapitalize="none" spellcheck="false" required>
+         <span class="error-text"></span>
+         </div>
+         
+        <label for="phone">Phone Number</label>
+        <div class="input-wrapper">
         <input type="tel" id="phone" name="phone" required>
-
+        <span class="error-text"></span>
+        </div>
+        
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -94,10 +111,13 @@
       <h3>Create Password</h3>
 </div>
 
-        <label>Password</label>
-    
-        <input type="password" id="passwordInput" name="password" required>
-         <div class="toggle" onclick="togglePassword()">Show</div>
+        <label for="password">Password</label>
+       <div class="input-wrapper">
+        <input type="password" id="password" name="password" autocomplete="new-password" required>
+         <span class="error-text"></span>
+         </div>
+         
+     <div class="toggle" onclick="togglePassword()">Show</div>
       
        
         <div class="btn-group">
@@ -113,7 +133,7 @@
       <h3>Profile Photo</h3>
 </div>
 
-        <label>
+        <label for="profilePic">
          <div style="display: flex; align-items: center; justify-content: center;">
         <img id="profilePreview" class="preview">
          <input type="file" id="profilePic" name="profile_pic" accept="image/*" style="display: none;">
@@ -121,7 +141,7 @@
         </label>
 
         <div class="btn-group">
-          <button type="button" class="submit-btn">Create Account</button>
+          <button type="submit" class="submit-btn">Create Account</button>
         </div>
 
       </div>

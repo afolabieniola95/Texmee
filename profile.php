@@ -1,4 +1,23 @@
 
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+  header("Location: login.html");
+  exit;
+}
+
+$conn = new mysqli("localhost", "root", "", "texmee");
+
+$stmt = $conn->prepare("SELECT first_name, last_name, email, profile_pic FROM users WHERE id=?");
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,10 +150,10 @@
   
   <!-- Profile Photo + Name -->
    <center>
-	  <div class="profile-photo" style="background-image: url('uploads/image1.jpg');"></div>
+	  <div class="profile-photo" style="background-image: url('<?php echo htmlspecialchars($user['profile_pic'] ?: 'default-avater.png'); ?>');"> </div>
   </center>	
    
- <h2 class="name">Afolabi Boluwatife</h2>
+ <h2 class="name"> <?php echo htmlspecialchars ($user['first_name']. ' ' .$user['last_name']); ?> </h2>
 
  <div style = "gap: 30px; padding: 20px; display: flex; align-items: center; justify-content: center;">
   <a href="Edit-profile.php" style="text-decoration: none; color: black;">

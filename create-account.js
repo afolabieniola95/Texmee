@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', ()=>{
+  
 const steps = document.querySelectorAll('.form-step');
 const nextBtn = document.querySelectorAll('.next-btn');
 const backBtn = document.querySelectorAll('.back-btn');
@@ -9,24 +11,10 @@ function showStep(index){
     step.classList.toggle('active', i === index);
   });
 }
+showStep(currentStep);
 
-function shakeInput(input){
-input.classList.remove('input-error'); //reset
-void input.offsetWidth; //force reflow
-input.classList.add('input-error');
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
- document.querySelectorAll('input,select').forEach(input =>{
-      input.addEventListener('input', ()=>
-        input.classList.remove('input-error'));
-      });
-    });
-
-
-
-nextBtn.forEach(() => {
-  addEventListener('click', () => {
+nextBtn.forEach(btn => {
+  btn.addEventListener('click', () => {
 
    // Step 1 validation
 
@@ -35,13 +23,13 @@ nextBtn.forEach(() => {
     const lastName = document.getElementById('lastName');
 
     if(!firstName.value.trim()){
-     shakeInput(firstName);
+     shakeInput(firstName, 'Please enter your first name.');
      firstName.focus();
       return; //stop here
     }
 
     if(!lastName.value.trim()){
-     shakeInput(lastName);
+     shakeInput(lastName, 'Please enter your last name.');
      lastName.focus();
       return; //stop here
     }
@@ -54,7 +42,7 @@ if(currentStep === 1){
   const dob = document.getElementById('dob');
 
     if(!dob.value.trim()){
-     shakeInput(dob);
+     shakeInput(dob, 'Please enter your date of birth.');
      dob.focus();
       return; //stop here
     }
@@ -65,7 +53,7 @@ if(currentStep === 1){
     const gender = document.getElementById('gender');
 
     if(!gender.value){
-      shakeInput(gender);
+      shakeInput(gender, 'Please select gender.');
      gender.focus();
       return; //stop here
     }
@@ -76,31 +64,66 @@ if(currentStep === 1){
    if(currentStep === 3){
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
 
-    if(!email.value.trim()){
-      shakeInput(email);
-     email.focus();
-     return; //stop here
-    }
-    
-    if(!phone.value.trim()){
-      shakeInput(phone);
-     phone.focus();
-     return; //stop here
-    }
+
+   if (!isValidEmail(email.value.trim())) {
+  shakeInput(email, 'Please enter your email.');
+  email.focus();
+  return;
 }
+
+if (emailInput) {
+  emailInput.addEventListener('input', () => {
+    const value = emailInput.value.trim();
+
+    if (!value) {
+      emailInput.classList.remove('input-error');
+      return;
+    }
+
+    if (isValidEmail(value)) {
+      emailInput.classList.remove('input-error');
+    } else {
+      emailInput.classList.add('input-error');
+    }
+  });
+}
+
+    function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+    if(!phone.value.trim()){
+      shakeInput(phone, 'Please enter your mobile number.');
+      phone.focus();
+      return; //stop here
+    }
+   }
+
 
    if(currentStep === 4){
     const password = document.getElementById('password');
-  
-  if(password.value.length < 6){
-      shakeInput(password);
-     password.focus();
-     return; //stop here
-    }
-    
-   }
+    const passwordInput = document.getElementById('password');
 
+  if (!isStrongPassword(password.value)) {
+    shakeInput(password, 'Please create strong password.');
+    password.focus();
+    return;
+  }
+  
+if (passwordInput) {
+  passwordInput.addEventListener('input', () => {
+    if (isStrongPassword(passwordInput.value)) {
+      passwordInput.classList.remove('input-error');
+    }
+  });
+}
+
+function isStrongPassword(password) {
+  return /^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(password);
+}
+}
+  
 
     if (currentStep < steps.length - 1) {
       currentStep++;
@@ -109,7 +132,6 @@ if(currentStep === 1){
   });
 });
   
-
 backBtn.forEach(btn => {
   btn.addEventListener('click', () => {
     if (currentStep > 0) {
@@ -119,8 +141,25 @@ backBtn.forEach(btn => {
   });
 });
 
+function shakeInput(input, message = 'This field is required') {
+  input.classList.remove('input-error'); // reset
+  void input.offsetWidth; // force reflow
+  input.classList.add('input-error');
 
+  const wrapper = input.closest('.input-wrapper');
+  if (!wrapper) return;
+  const errorText = wrapper.querySelector('.error-text');
+  if (errorText) errorText.textContent = message;
+}
 
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    input.classList.remove('input-error');
+    const wrapper = input.closest('.input-wrapper');
+    const errorText = wrapper?.querySelector('.error-text');
+    if (errorText) errorText.textContent = '';
+  });
+});
 
 // Preview profile and cover
 const profilePic = document.getElementById('profilePic');
@@ -139,20 +178,23 @@ profilePic.addEventListener('change', () => {
     reader.readAsDataURL(file);
   }
 });
+});
 
+
+
+
+ 
 
  //Toggle password visibility
 function togglePassword(){
- 
-  const input = document.getElementById('passwordInput');
+  const input = document.getElementById('password');
   const toggle = document.querySelector('.togglePassword');
-  
+
   if(input.type === 'password'){
     input.type = 'text';
     toggle.textContent = 'Hide';
-  }else{
+  } else {
     input.type = 'password';
     toggle.textContent = 'Show';
   }
 }
-

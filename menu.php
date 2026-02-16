@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+  header("Location: index.html");
+  exit;
+}
+
+$conn = new mysqli("localhost", "root", "", "texmee");
+
+$stmt = $conn->prepare("SELECT first_name, last_name, email, profile_pic FROM users WHERE id=?");
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -175,9 +193,9 @@ h3{
   <div class="profile-info">
   <div style="display: flex; align-items: center;">  
   
-  <div class="profile-photo" style="background-image: url('uploads/image1.jpg');"></div>
+  <div class="profile-photo" style="background-image: url('<?php echo htmlspecialchars($user['profile_pic'] ? : 'default-avater.png'); ?>');"></div>
 
-  <div class="profile-name">Afolabi Boluwatife</div>
+  <div class="profile-name"> <?php echo htmlspecialchars($user['first_name']. ' ' .$user['last_name']);?> </div>
     </div>
 
    <img class="switch-icon" src="icon/switch.png" style="width: 20px; height: 20px;  margin-right: 30px;">
@@ -224,7 +242,9 @@ h3{
   
   <!-- Logout button -->
   <center>
+    <a href="logout.php">
   <button class = "logout">Log out</button>
+</a>
    </center>
 
   <div class="close-panel"></div>

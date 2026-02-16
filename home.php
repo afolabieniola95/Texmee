@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+  header("Location: index.html");
+  exit;
+}
+
+$conn = new mysqli("localhost", "root", "", "texmee");
+
+$stmt = $conn->prepare("SELECT first_name, last_name, email, profile_pic FROM users WHERE id=?");
+$stmt->bind_param("i", $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +35,7 @@
         <img src="icon/search.png" alt="Search" style="width: 20px; height: 20px;">
       </a>
 
-      <a href="menu.html">
+      <a href="menu.php">
         <img src="icon/menu.png" alt="Menu" style="width: 23px; height: 23px;">
       </a>
     </div>
@@ -61,9 +79,9 @@
       </div>
     </a>
 
-    <a href="profile.html" style="text-decoration: none;">
+    <a href="profile.php" style="text-decoration: none;">
       <div class="nav-item">
-        <div class="profile-photo" style="background-image: url('uploads/image1.jpg');"></div>
+        <div class="profile-photo" style="background-image: url('<?php echo htmlspecialchars($user['profile_pic'] ? : 'default-avater.png'); ?>');"></div>
         <span style="padding-bottom: 5px;">You</span>
       </div>
     </a>

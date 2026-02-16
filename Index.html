@@ -10,11 +10,21 @@
             align-items: center;
 			justify-content: center;
         }
+
         input{
-            
+            display: flex;
+            align-items: center;
+            width: 90%; 
+            padding: 11px;
+            font-size: 13px; 
+            border-radius: 5px; 
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+			background-color: whitesmoke;
         }
 
-        .password-input{
+        .input-container{
             display: flex;
             margin-bottom: 20px; 
             width: 90%;   
@@ -25,7 +35,7 @@
             border: 1.5px solid gray;
             outline: none;
             box-sizing: border-box;
-			      background-color: whitesmoke;
+		    background-color: whitesmoke;
         }
 
         button {
@@ -66,30 +76,20 @@
     </div>
 
 
-     <form method="POST">
+     <form action="login.php" method="POST">
 	<center>
-        <input type="email" name="email" style = "width: 90%;
-            margin: 10px auto; 
-            padding: 11px;
-            font-size: 13px; 
-            border-radius: 5px; 
-            border: 1.5px solid gray;
-            outline: none;
-            box-sizing: border-box;
-			background-color: whitesmoke;" placeholder = "Email or Username" required value="<?= htmlspecialchars($email ?? '') ?>">
-        <div class="error" style="<?= !empty($emailError) ? 'display:block;' : 'display:none;' ?>">
-            <?= $emailError ?>
-        </div><br></br>
-
+        <div class = "input-container">
+        <input type="email" name="email" placeholder = "Email or phone" required>
+            </div><br></br>
+  </div>
+  
       <label>
-        <div class = "password-input">
-        <input type="password" name="password" id="passwordInput" style = "width: 100%; border: none; background-color: whitesmoke; outline: none;  " placeholder = "Password" required>
+        <div class = "input-container">
+        <input type="password" name="password" id="passwordInput" placeholder = "Password" required>
 		<div class="toggle" onclick="togglePassword()">Show</div>
 </div>
 		</label>
-
-        <div class="error" style="<?= !empty($passwordError) ? 'display:block;' : 'display:none;' ?>">
-            <?= $passwordError ?>
+        
         </div>
        <a href = "Forgotten_password.html" style = "text-decoration: none; color: black;">
       <div style="text-align: center; font-size: 14px;">Forgotten password?</div>
