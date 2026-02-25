@@ -18,7 +18,6 @@
        <h3>What's your name?</h3>
 </div>
 
-<<<<<<< HEAD
         <label for="firstName">First Name</label>
         <div class="input-wrapper">
         <input type="text" id="firstName" name="first_name" autocomplete="given-name" autocapitalize="words" required>
@@ -28,17 +27,6 @@
         <label for="lastName">Last Name</label>
       <div class="input-wrapper">
         <input type="text" id="lastName" name="last_name" autocomplete="family-name" autocapitalize="words" required>
-=======
-        <label>First Name</label>
-        <div class="input-wrapper">
-        <input type="text" id="firstName" name="first_name" autocapitalize="words" required>
-         <span class="error-text"></span>
-         </div>
-         
-        <label>Last Name</label>
-      <div class="input-wrapper">
-        <input type="text" id="lastName" name="last_name" autocapitalize="words" required>
->>>>>>> 55a51cc771fae720d2821b67e9865cc65425fd16
         <span class="error-text"></span>
         </div>
         
@@ -55,16 +43,34 @@
        <h3>What's your date of birth?</h3>
 </div>
 
-<<<<<<< HEAD
-       <label for="dob">Date of Birth</label>
-=======
-       <label>Date of Birth</label>
->>>>>>> 55a51cc771fae720d2821b67e9865cc65425fd16
+    
        <div class="input-wrapper">
-        <input type="date" name="dob" id="dob" placeholder="Date of birth">
-         <span class="error-text"></span>
-         </div>
-         
+        <label for="day">Day</label>
+        <select id="day" name="day" disabled>
+          <option value="">Select Days</option>
+        </select>
+        <span class="error-text"></span>
+</div>
+
+        <div class="input-wrapper">
+          <label for="month">Month</label>
+        <select id="month" name="month" disabled>
+          <option value="">Select Months</option>
+        </select>
+        <span class="error-text"></span>
+</div>
+
+        <div class="input-wrapper">
+          <label for="year">Year</label>
+        <select id="year" name="year">
+          <option value="">Select Years</option>
+        </select>
+        <span class="error-text"></span>
+
+        <p id="age-display"></p>
+</div>
+      
+             
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -78,11 +84,7 @@
         <h3>What's your gender?</h3>
 </div>
 
-<<<<<<< HEAD
        <label for="gender">Gender</label>
-=======
-       <label>Gender</label>
->>>>>>> 55a51cc771fae720d2821b67e9865cc65425fd16
        <div class="input-wrapper">
         <select id="gender" name="gender">
           <option value="">Select Gender</option>
@@ -98,15 +100,33 @@
         </div>
 </div>
 
-      <!-- Step 4 -->
-      <div class="form-step" id="step4">
+<!-- Step 4-->
+     <div class="form-step" id="step4">
+
+         <div style="display: flex; align-items: center;  gap: 40px; text-align: center;">
+      <img class="back-btn"  src="icon/backarrow.png">
+        <h3>What's your location?</h3>
+</div>
+
+       <label for="location">Location</label>
+       <div class="input-wrapper">
+        <input type="text" id="location" name="location" placeholder="Location">
+        <span class="error-text"></span>
+        </div>
+        
+        <div class="btn-group">
+          <button type="button" class="next-btn">Next</button>
+        </div>
+</div>
+
+      <!-- Step 5 -->
+      <div class="form-step" id="step5">
 
   <div style="display: flex; align-items: center;  gap: 20px; text-align: center;">
       <img class="back-btn"  src="icon/backarrow.png">   
       <h3>What's your mobile number and email?</h3>
 </div>
 
-<<<<<<< HEAD
         <label for="email">Email</label>
         <div class="input-wrapper">
         <input type="email" id="email" name="email" autocomplete="new-email" autocapitalize="none" spellcheck="false" required>
@@ -114,15 +134,6 @@
          </div>
          
         <label for="phone">Phone Number</label>
-=======
-        <label>Email</label>
-        <div class="input-wrapper">
-        <input type="email" id="email" name="email" required>
-         <span class="error-text"></span>
-         </div>
-         
-        <label>Phone Number</label>
->>>>>>> 55a51cc771fae720d2821b67e9865cc65425fd16
         <div class="input-wrapper">
         <input type="tel" id="phone" name="phone" required>
         <span class="error-text"></span>
@@ -133,23 +144,17 @@
         </div>
       </div>
 
-      <!-- Step 5 -->
-      <div class="form-step" id="step5">
+      <!-- Step 6 -->
+      <div class="form-step" id="step6">
 
     <div style="display: flex; align-items: center;  gap: 40px; text-align: center;">
       <img class="back-btn"  src="icon/backarrow.png">
       <h3>Create Password</h3>
 </div>
 
-<<<<<<< HEAD
         <label for="password">Password</label>
        <div class="input-wrapper">
         <input type="password" id="password" name="password" autocomplete="new-password" required>
-=======
-        <label>Password</label>
-       <div class="input-wrapper">
-        <input type="password" id="password" name="password" required>
->>>>>>> 55a51cc771fae720d2821b67e9865cc65425fd16
          <span class="error-text"></span>
          </div>
          
@@ -161,8 +166,8 @@
         </div>
     </div>
 
-        <!-- Step 6 -->
-      <div class="form-step" id="step6">
+        <!-- Step 7 -->
+      <div class="form-step" id="step7">
 
        <div style="display: flex; align-items: center;  gap: 40px; text-align: center;">
       <img class="back-btn"  src="icon/backarrow.png">
@@ -171,7 +176,7 @@
 
         <label for="profilePic">
          <div style="display: flex; align-items: center; justify-content: center;">
-        <img id="profilePreview" class="preview">
+        <div id="profilePreview" class="preview"></div>
          <input type="file" id="profilePic" name="profile_pic" accept="image/*" style="display: none;">
          </div>
         </label>

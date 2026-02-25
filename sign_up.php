@@ -13,11 +13,30 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 //Get POST data
 $first_name = trim($_POST['first_name'] ?? '');
 $last_name = trim($_POST['last_name'] ?? '');
-$dob = $_POST['dob'] ?? '';
+$year = isset($_POST['year']) ? $_POST['year']: null;
+$month = isset($_POST['month']) ? $_POST['month']: null;
+$day = isset($_POST['day']) ? $_POST['day']: null;
 $gender = $_POST['gender'] ?? '';
 $email = trim($_POST['email'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
 $password = $_POST['password'] ?? '';
+
+if(!$year || !$month || !$day){
+    die("Date of birth incomplete");
+};
+
+//Combine into proper format
+$dob = sprintf('%04d-%02d', $year,$month,$day);
+
+//Validate Age
+$birthDate = new DateTime($dob);
+$today = new DateTime();
+$age = $today->diff($birthDate)-> y;
+
+if($age < 13){
+    echo "You must be at least 13 years old.";
+    exit();
+}
 
 if(empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($password)){
     die("Required fields missing.");
@@ -47,7 +66,9 @@ $password_hash = password_hash($password,PASSWORD_DEFAULT);
 //Sanitize
 $first_name = ucfirst(strtolower(trim($first_name)));
 $last_name = ucfirst(strtolower(trim($last_name)));
-$dob = trim($dob);
+$year = trim($year);
+$year = trim($month);
+$year = trim($day);
 $gender = trim($gender);
 $email = trim($email);
 $phone = trim($phone);
@@ -81,7 +102,7 @@ if(isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error']===0){
 
 //Insert into database
 $sql = "INSERT INTO users(
-first_name,last_name,dob,gender,email,phone,password_hash,profile_pic)
+first_name,last_name,date_of_birth,gender,email,phone,password_hash,profile_pic)
 VALUE(?,?,?,?,?,?,?,?)";
 
 $stmt = $conn->prepare($sql);
@@ -92,7 +113,7 @@ $dob,
 $gender,
 $email,
 $phone,
-$passwordHash,
+$password_hash,
 $profile_pic_path
 );
 
@@ -107,7 +128,7 @@ if($stmt->execute()){
       'gender' => $gender,
       'email' => $email,
       'phone' => $phone,
-      'password' => $password,
+      'password' => $password_hash,
       'profile_pic_path' => $profile_pic_path
     ];
     $SESSION['active_user'] = $new_user_id;
