@@ -66,10 +66,9 @@ $user = $result->fetch_assoc();
 
   
       <div class="nav-item">
-        <div style="box-shadow: 1px 1px 2px 1px black; border: 1px solid black; width: 30px; height: 30px; border-radius: 100px;">
-      
-        <img onclick="openPostPicker()"src="icon/add-friends.png" alt="Post" style="width: 100%; height: 100%; border-radius: 100px;">
-       <input type="file" id="post-image-input" accept="image/* video/*" style="display: none;">
+        <div  style="box-shadow: 1px 1px 2px 1px black; border: 1px solid black; width: 30px; height: 30px; border-radius: 100px;">
+        <img id="postBtn" src="icon/add-friends.png" alt="Post" style="width: 100%; height: 100%; border-radius: 100px;">
+       <input type="file" id="postInput" accept="image/* video/*" style="display: none;">
 </div>     
 </div>
 

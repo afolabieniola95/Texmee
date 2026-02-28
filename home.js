@@ -533,24 +533,27 @@ document.getElementById('like').style.display = "none";
  }
 
 
- function openPostPicker(){
-   document.getElementById('post-image-input').click();
- }
+ document.addEventListener("DOMContentLoaded", function(){
+  const postBtn = document.getElementById('postBtn');
+  const postInput = document.getElementById('postInput');
 
- document.getElementById('post-image-input').addEventListener('change', function(event) {
- 
-  const file = this.files[0];
-  if (!file) return;
+  postBtn.addEventListener('click', ()=>{
+    postInput.click();
+  });
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-   localStorage.setItem('PostImage', e.target.result);
- window.location.href = "create-posts.php";
-};
+  postInput.addEventListener('change', function(){
+    if(this.files.length === 0) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      sessionStorage.setItem("postImage", e.target.result);
+      window.location.href = "create-posts.php";
+    };
 
-reader.readAsDataURL(file);
+    reader.readAsDataURL(this.files[0]);
+  });
 
-});
+
+ });
  
  
  

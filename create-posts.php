@@ -67,7 +67,6 @@ $image = $_GET['image'] ?? '';
   <div class="media-preview" id="preview"></div>
     
   
-  
 
 <form id="postForm" method="POST" action="submit_post.php" enctype="multipart/form-data">
   <input type="file" name="image" id="realImageInput" hidden>
@@ -106,7 +105,7 @@ $image = $_GET['image'] ?? '';
 
   
    <center>  
-  <button class="post-btn" type="submit">Post</button>
+  <button class="post-btn" type="submit" id="post-btn">Post</button>
    </center>
 
     </form>
