@@ -1,3 +1,8 @@
+<?php
+session_start();
+$image = $_GET['image'] ?? '';
+?>
+
 
 <!DOCTYPE html>  
 <html>  
@@ -61,20 +66,24 @@
 
   <div class="media-preview" id="preview"></div>
     
-   <input type="file" id="fileInput" accept="image/*,video/*">
-   <input type="text" id="text-input" name="overlay-input">
+  
+  
 
+<form id="postForm" method="POST" action="submit_post.php" enctype="multipart/form-data">
+  <input type="file" name="image" id="realImageInput" hidden>
 
     <div class="media-nav" id="media-nav">
        
       <div class="m-nav" id="text">
      <img  src="icon/text.png">
     <span>Text</span>
+     <input type="text" id="text-input" name="overlay-input">
       </div> 
      
     <div class="m-nav" id="media">
      <img  src="icon/add-media1.png">
     <span>Media</span>
+     <input type="file" id="fileInput" accept="image/*,video/*">
       </div> 
 
     <div class="m-nav" id="music">
@@ -97,8 +106,10 @@
 
   
    <center>  
-  <button class="post-btn" id="post-btn">Post</button>
+  <button class="post-btn" type="submit">Post</button>
    </center>
+
+    </form>
     
    <p id="btn-alert">Add media first.</p>
 

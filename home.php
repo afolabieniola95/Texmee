@@ -64,13 +64,14 @@ $user = $result->fetch_assoc();
       </div>
     </a>
 
-    <a href="create-posts.html">
+  
       <div class="nav-item">
         <div style="box-shadow: 1px 1px 2px 1px black; border: 1px solid black; width: 30px; height: 30px; border-radius: 100px;">
-          <img src="icon/add-friends.png" alt="Post" style="width: 100%; height: 100%; border-radius: 100px;">
-        </div>
-      </div>
-    </a>
+      
+        <img onclick="openPostPicker()"src="icon/add-friends.png" alt="Post" style="width: 100%; height: 100%; border-radius: 100px;">
+       <input type="file" id="post-image-input" accept="image/* video/*" style="display: none;">
+</div>     
+</div>
 
     <a href="video_page.html" style="text-decoration: none;">
       <div class="nav-item">

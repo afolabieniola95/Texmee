@@ -197,3 +197,19 @@ storage.addEventListener('click', ()=>{
   storageContainer.style.display = 'block';
 
 });
+
+const ImageData = localStorage.getItem('postImage');
+
+if(ImageData){
+  document.getElementById('preview').style.backgroundImage = `url(${ImageData})`;
+
+  //covert base64 back to upload
+  fetch(ImageData)
+  .then(res => res.blob())
+  .then(blob =>{
+    const file = new File([blob], 'post-image.png', {type: blob.type});
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    document.getElementById("realImageInput").files = dataTransfer.files;
+  });
+}

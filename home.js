@@ -533,7 +533,24 @@ document.getElementById('like').style.display = "none";
  }
 
 
+ function openPostPicker(){
+   document.getElementById('post-image-input').click();
+ }
 
+ document.getElementById('post-image-input').addEventListener('change', function(event) {
+ 
+  const file = this.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+   localStorage.setItem('PostImage', e.target.result);
+ window.location.href = "create-posts.php";
+};
+
+reader.readAsDataURL(file);
+
+});
  
  
  
