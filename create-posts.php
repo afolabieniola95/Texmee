@@ -102,6 +102,7 @@ $image = $_GET['image'] ?? '';
 
   </div>
 
+  <img src="icon/down-arrow.png" id="actions-toggle">
 
   
    <div class="post-actions">

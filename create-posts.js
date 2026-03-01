@@ -204,7 +204,7 @@ if(ImageData){
 
 const postActions = document.querySelector('.post-actions');
 const draftBtn = document.getElementById('draft-btn');
-
+const actionsToggle = document.getElementById('actions-toggle');
 if(ImageData){
   setTimeout(()=>{
   postActions.style.width = '100%';
@@ -214,3 +214,22 @@ if(ImageData){
 }, 1000);
 
 }
+
+document.body.addEventListener('click', () =>{
+  postActions.style.width = '0%';
+  postActions.style.height = '0px';
+  draftBtn.style.display = 'none';
+  postBtn.style.display = 'none';
+  actionsToggle.style.top = '2%';
+  actionsToggle.style.left = '2%';
+  actionsToggle.style.width = '30px';
+  actionsToggle.style.height = '30px';
+});
+
+actionsToggle.addEventListener('click', () =>{
+  postActions.style.width = '100%';
+  postActions.style.height = '50px';
+  actionsToggle.style.display = 'none';
+  draftBtn.style.display = 'block';
+  postBtn.style.display = 'block';
+}); 
