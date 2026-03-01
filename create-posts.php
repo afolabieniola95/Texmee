@@ -104,9 +104,11 @@ $image = $_GET['image'] ?? '';
 
 
   
-   <center>  
+   <div class="post-actions">
+    <button class="draft-btn" id="draft-btn">Draft</button>
   <button class="post-btn" type="submit" id="post-btn">Post</button>
-   </center>
+
+</div>
 
     </form>
     

@@ -29,7 +29,6 @@ fileInput.addEventListener('change', (e)=>{
 });
 
 
-
 postBtn.addEventListener('click', ()=>{
   const file = fileInput.files?.[0];
   if(!file){
@@ -201,4 +200,17 @@ const ImageData = sessionStorage.getItem('postImage');
 
 if(ImageData){
   document.getElementById('preview').style.backgroundImage = `url(${ImageData})`;
+}
+
+const postActions = document.querySelector('.post-actions');
+const draftBtn = document.getElementById('draft-btn');
+
+if(ImageData){
+  setTimeout(()=>{
+  postActions.style.width = '100%';
+  postActions.style.height = '50px';
+  draftBtn.style.display = 'block';
+  postBtn.style.display = 'block';
+}, 1000);
+
 }
