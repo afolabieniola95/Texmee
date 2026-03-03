@@ -31,6 +31,15 @@ $user = $result->fetch_assoc();
       background: #fff;
     }
 
+   
+ #container  {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
     .profile-photo {
 	    width: 150px; 
    	  height: 150px;
@@ -146,6 +155,8 @@ $user = $result->fetch_assoc();
 </head>
 <body>
 
+<div id="container">
+
  <div onclick="history.back()" style="margin: 7px; background-image: url('icon/backarrow.png'); background-size: cover; background-position: center; width: 20px; height: 20px;"></div>
   
   <!-- Profile Photo + Name -->
@@ -190,7 +201,7 @@ $user = $result->fetch_assoc();
 </div>
 
       
-  <table style="border-collapse: collapse; border-bottom: 1px solid grey; padding-top: 20px; width: 100%;">
+  <table style="margin: 0 auto; max-width: 1200px; border-collapse: collapse; border-bottom: 1px solid grey; padding-top: 20px; width: 100%;">
     <tr>
     <td class="posts">Posts</td>
 
@@ -202,7 +213,7 @@ $user = $result->fetch_assoc();
 
 <div class="photos-container">No photo</div>
 
-
+</div>
 
   
 <script>

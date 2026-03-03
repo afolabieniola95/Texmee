@@ -26,9 +26,12 @@ $user = $result->fetch_assoc();
 </head>
 <body>
 
+<div id="container">
+
   <!-- Top fixed header (kept visually same) -->
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 5px 0 0 10px; position: fixed; top: 0; left: 0; background-color: white; width: 100%; z-index: 2;">
-    <div style="font-size: 18px; color: black; font-weight: bold; text-align: left;">TexMee</div>
+  <div id="header">
+
+   <div style="font-size: 20px; color: black; font-weight: bold; text-align: left;">TexMee</div>
 
     <div style="padding-top: 5px; display: flex; gap: 15px; margin-right: 20px;">
       <a href="search.html">
@@ -138,6 +141,7 @@ $user = $result->fetch_assoc();
   
   <button id="followingAlert"></button>
   
+</div>
   
   <script src="home.js"></script>
 </body>
