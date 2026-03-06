@@ -19,16 +19,16 @@
             padding: 11px;
             font-size: 13px; 
             border-radius: 5px; 
-            border: none;
+            border: 1.5px solid gray;
             outline: none;
             box-sizing: border-box;
-			background-color: whitesmoke;
+		      	background-color: whitesmoke;
         }
 
     .password-wrapper {
             display: flex;
             align-items: center;
-            margin-bottom: 20px; 
+            margin-top: 30px; 
             width: 400px;   
             padding: 5px;
             height: 40px;
@@ -40,19 +40,6 @@
 		    background-color: whitesmoke;
         }   
         
-  input{
-   display: flex;
-   width: 400px;   
-   padding: 5px 15px;
-   height: 40px;
-   font-size: 14px; 
-   font-size: 13px;
-   border-radius: 5px; 
-   border: 1.5px solid gray;
-   outline: none;
-   box-sizing: border-box;
-   background-color: whitesmoke;
-        }
 
  button {
     width: 150px;
@@ -66,19 +53,19 @@
     margin: 50px 50px;
 }
 
-        .error {
-            color: red;
-            font-size: 12px;
-            margin-bottom: 10px;
-            display: block;
-        }
+ .error {
+ color: red;
+ font-size: 12px;
+ margin-bottom: 10px;
+ display: block;
+}     
 		
 	.toggle {
       cursor: pointer;
       font-size: 11px;
       color: grey;
       user-select: none;
-	  text-align: right;
+	   text-align: right;
     }
 
     #container  {
@@ -121,6 +108,49 @@
   animation: shake 0.3s;
  }
 
+  .spinner {
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid black; /* Black */
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .modal{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 0px;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 9px;
+    box-shadow: 0 5px 5px grey, 0 0 5px grey;
+    background-color: whitesmoke;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif, segoe UI;
+    transition: 0.5s ease;
+    transform: translate(-50%, 0);
+  }
+
+  p{
+    white-space: nowrap;
+    font-size: 13px;
+     font-family: Arial, Helvetica, sans-serif, segoe UI;
+     text-align: center;
+  }
     </style>
 </head>
 <body>
@@ -135,33 +165,39 @@
 
 
 
-     <form action="login.php" method="POST">
+     <form id="loginForm">
 
          <div class = "input-wrapper">
-        <input type="email" name="email" id="emailInput"  placeholder = "Email or phone" required> 
+        <input type="email" name="email" id="emailInput"  placeholder = "Email or phone"> 
           <span class="error-text"></span>
 </div>
-        <br></br>
-
+       
+        <div class = "input-wrapper">
         <div class = "password-wrapper">
         <input type="password" name="password" id="passwordInput" placeholder = "Password"  style="border: none; outline: none; background-color: transparent;
-        margin: 0px; height: 30px;" required>
-		<div class="toggle" onclick="togglePassword()">Show</div>  
-</div>
-       <span class="error-text"></span>
+        margin: 0px; height: 30px;">
+		<div class="toggle" onclick="togglePassword()">
+         <img src="icon/password-open.png" style="width: 15px; height: 15px;">
+        </div>
+    </div>
+
+        <span class="error-text"></span> 
+     </div>
+       
         
-       <a href = "Forgotten_password.html" style = "text-decoration: none; color: black;">
+       <a href = "forgotten-password.html" style = " margin-top: 30px;  text-decoration: none; color: black;">
       <div style="text-align: center; font-size: 14px;">Forgotten password?</div>
        </a> 
 
        <center>
-            <button type="submit">Login</button>
+            <button type="submit" class="login-btn">Login</button>
         </center>
 
+       
   
-    <p style="margin-top: 30px; text-align: center; font-size: 15px;">
-	Don't have an account yet?
-	<a href="create_account.html">Sign up</a></p>
+    <p>Don't have an account yet?
+      <span><a href="create_account.html" style="text-decoration: none; color: purple">Sign up</a></span>
+      </p>
 	
 	<div style = "align-items: center; justify-content: center; display: flex; gap: 20px; padding-top: 16px;">
 	  <div style = "border-bottom: 1px solid grey; width: 100px; margin: 10px;"></div>  
@@ -178,12 +214,18 @@
 </form>
 </div>
 
+<div id="message-alert" class="modal">
+  <p id="modal-message"></p>
+</div>
+
   <script>
    
-   
-    const form = document.querySelector('form');
+const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', function(event) {
+
+event.preventDefault();
+
   const emailInput = document.getElementById('emailInput');
   const passwordInput = document.getElementById('passwordInput');
   const passwordWrapper = passwordInput.closest('.password-wrapper');
@@ -201,9 +243,50 @@ form.addEventListener('submit', function(event) {
     hasError = true;
   }
 
-  if (hasError) {
-    event.preventDefault(); // 🔥 THIS STOPS SUBMISSION
+
+  if(hasError) return;
+
+  //Ajax call or form submission logic here
+  fetch('login.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: emailInput.value.trim(),
+      password: passwordInput.value.trim()
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      //Spinning loader or success message can be shown here before redirecting
+      const btnSpinner = document.querySelector('.login-btn');
+      btnSpinner.disabled = true; // prevent multiple clicks
+      btnSpinner.innerHTML = `<span class="spinner"></span> Logging in...`;
+
+      //small delay to show the spinner effect before redirecting
+      setTimeout(() => {
+     // Redirect to dashboard or home page
+      window.location.href = 'home.php';
+    }, 1000);
+   } else if(data.status === "locked") {
+     showModal(data.message);
+
+  } else if (data.status === "error"){
+    if(data.remaining !== undefined){
+      showModal(data.message + "\n\nAttempts remaining: " + data.remaining);
+    } else {
+      showModal(data.message);
+    }
   }
+
+ })
+
+  .catch(error => {
+    console.error("Login error:",error);
+  });
+
 });
 
 
@@ -213,16 +296,22 @@ form.addEventListener('submit', function(event) {
   void input.offsetWidth; // force reflow
   input.classList.add('input-error');
 
-  const wrapper = input.closest('.input-wrapper, .password-wrapper');
+  const wrapper = input.closest('.input-wrapper');
   if (!wrapper) return;
   const errorText = wrapper.querySelector('.error-text');
   if (errorText) errorText.textContent = message;
 }
 
-document.querySelectorAll('input, .password-wrapper').forEach(input => {
+document.querySelectorAll('input').forEach(input => {
   input.addEventListener('input', () => {
     input.classList.remove('input-error');
-    const wrapper = input.closest('.input-wrapper, .password-wrapper');
+    const wrapper = input.closest('.input-wrapper');
+
+    const passwordWrapper = input.closest('.password-wrapper');
+    if (passwordWrapper) {
+      passwordWrapper.classList.remove('input-error');
+    }
+
     const errorText = wrapper?.querySelector('.error-text');
     if (errorText) errorText.textContent = '';
   });
@@ -248,6 +337,27 @@ function clearErrorText(input){
         toggleText.textContent = 'Show';
       }
     }
+
+
+    function showModal(message){
+      const modal = document.getElementById('message-alert');
+      const modalMessage = document.getElementById('modal-message');
+      modal.style.display = 'flex';
+      modal.style.width = '80%';
+      modal.style.height = '30px'; 
+      modal.style.bottom = '20px'; 
+       modalMessage.textContent = message;
+       modalMessage.style.display = 'block'
+       
+       setTimeout(() => {
+        modal.style.display = 'none';
+          modal.style.width = '0%';
+          modal.style.height = '0px'; 
+          modal.style.bottom = '0px'; 
+          modalMessage.textContent = '';
+    }, 1000);
+
+  }
   </script> 
 
 	
