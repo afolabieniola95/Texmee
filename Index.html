@@ -4,41 +4,13 @@
 <head>
     <title>Login</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+
+  body {
+      font-family: Arial, sans-serif;
 			padding: 10px;
-            align-items: center;
+      align-items: center;
 			justify-content: center;
-        }
-
-        input{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%; 
-            padding: 11px;
-            font-size: 13px; 
-            border-radius: 5px; 
-            border: 1.5px solid gray;
-            outline: none;
-            box-sizing: border-box;
-		      	background-color: whitesmoke;
-        }
-
-    .password-wrapper {
-            display: flex;
-            align-items: center;
-            margin-top: 30px; 
-            width: 400px;   
-            padding: 5px;
-            height: 40px;
-            font-size: 14px; 
-            border-radius: 5px; 
-            border: 1.5px solid gray;
-            outline: none;
-            box-sizing: border-box;
-		    background-color: whitesmoke;
-        }   
+}
         
 
  button {
@@ -50,7 +22,7 @@
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
-    margin: 50px 50px;
+    margin: 100px auto;
 }
 
  .error {
@@ -61,6 +33,9 @@
 }     
 		
 	.toggle {
+      position: absolute;
+      right: 15px;
+      top: 15px;
       cursor: pointer;
       font-size: 11px;
       color: grey;
@@ -69,17 +44,11 @@
     }
 
     #container  {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
     box-sizing: border-box;
   }
 
@@ -150,7 +119,56 @@
     font-size: 13px;
      font-family: Arial, Helvetica, sans-serif, segoe UI;
      text-align: center;
+     margin-top: 60px;
   }
+
+  .input-wrapper{
+    position:   relative;
+  }
+
+  .input-wrapper input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    padding: 11px;
+    font-size: 13px; 
+    border-radius: 5px; 
+    border: 1.5px solid gray;
+    outline: none;
+    box-sizing: border-box;
+		background-color: white;
+    margin-top: 20px;
+}
+
+.input-wrapper input:focus {
+  border-color: black;
+
+}
+
+.input-wrapper label {
+  position: absolute;
+  top: 25%;
+  left: 10px;
+  transform: translateY(-25%);
+  color: grey;
+  font-size: 14px;
+  transition: 0.25s ease all;
+  padding: 0 5px;
+  
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+  top: 0;
+  left:8px;  
+  font-size: 15px;
+  transform: translateY(-50%);
+  color: black;
+  background-color: white;
+}
+
+
     </style>
 </head>
 <body>
@@ -165,28 +183,32 @@
 
 
 
-     <form id="loginForm">
+     <form id="loginForm" autocomplete="off">
 
          <div class = "input-wrapper">
-        <input type="email" name="email" id="emailInput"  placeholder = "Email or phone"> 
+        <input type="email" name="email" id="emailInput"  placeholder = " " autocomplete="off"> 
+        <label for="emailInput">Email</label>
           <span class="error-text"></span>
 </div>
        
         <div class = "input-wrapper">
-        <div class = "password-wrapper">
-        <input type="password" name="password" id="passwordInput" placeholder = "Password"  style="border: none; outline: none; background-color: transparent;
-        margin: 0px; height: 30px;">
-		<div class="toggle" onclick="togglePassword()">
-         <img src="icon/password-open.png" style="width: 15px; height: 15px;">
-        </div>
-    </div>
-
+        <input type="password" name="password" id="passwordInput" placeholder = " " autocomplete="new-password">
+         <label for="passwordInput">Password</label>
         <span class="error-text"></span> 
-     </div>
-       
+
+
+        <div class="toggle" onclick="togglePassword()">
+         <img src="icon/password-open.png" id="toggle-show" style="width: 15px; height: 15px; display: none;">
+         <img src="icon/password-close.png" id="toggle-hide" style="width: 15px; height: 15px; display: none;">
+        </div>
         
-       <a href = "forgotten-password.html" style = " margin-top: 30px;  text-decoration: none; color: black;">
-      <div style="text-align: center; font-size: 14px;">Forgotten password?</div>
+  
+        
+</div>
+       
+     	
+       <a href = "forgotten-password.html" style = "text-decoration: none; color: black;">
+      <div style="text-align: left; font-size: 14px; width: 140px; border: 1px solid red;">Forgotten password?</div>
        </a> 
 
        <center>
@@ -199,17 +221,6 @@
       <span><a href="create_account.html" style="text-decoration: none; color: purple">Sign up</a></span>
       </p>
 	
-	<div style = "align-items: center; justify-content: center; display: flex; gap: 20px; padding-top: 16px;">
-	  <div style = "border-bottom: 1px solid grey; width: 100px; margin: 10px;"></div>  
-	 <div style = "font-size: 15px;">Or continue with</div>
-	 <div style = "border-bottom: 1px solid grey; width: 100px; margin: 10px;"></div>
-  </div>
-     
-   <div style = "display: flex; align-items: center; justify-content: center; gap: 90px;  padding: 30px;">
-	
-   <img src ="icon/chrome.png" style = "background-color: white; width: 40px; height: 40px;">
-   <img src ="icon/facebook.jpeg" style = "width: 30px; height: 33px;">
-	</div>
 
 </form>
 </div>
@@ -228,7 +239,7 @@ event.preventDefault();
 
   const emailInput = document.getElementById('emailInput');
   const passwordInput = document.getElementById('passwordInput');
-  const passwordWrapper = passwordInput.closest('.password-wrapper');
+  
 
   let hasError = false;
 
@@ -239,7 +250,7 @@ event.preventDefault();
   }
 
   if (!passwordInput.value.trim()) {
-    shakeInput(passwordWrapper, 'Please enter your password');
+    shakeInput(passwordInput, 'Please enter your password');
     hasError = true;
   }
 
@@ -307,11 +318,7 @@ document.querySelectorAll('input').forEach(input => {
     input.classList.remove('input-error');
     const wrapper = input.closest('.input-wrapper');
 
-    const passwordWrapper = input.closest('.password-wrapper');
-    if (passwordWrapper) {
-      passwordWrapper.classList.remove('input-error');
-    }
-
+    
     const errorText = wrapper?.querySelector('.error-text');
     if (errorText) errorText.textContent = '';
   });
@@ -319,7 +326,7 @@ document.querySelectorAll('input').forEach(input => {
 
 
 function clearErrorText(input){
-  const wrapper = input.closest('.input-wrapper, .password-wrapper');
+  const wrapper = input.closest('.input-wrapper');
  const errorText = wrapper?.querySelector('.error-text');
     if (errorText) errorText.textContent = '';
 }
@@ -327,17 +334,34 @@ function clearErrorText(input){
 
     function togglePassword() {
       const passwordInput = document.getElementById('passwordInput');
-      const toggleText = document.querySelector('.toggle');
+      const toggleShow = document.getElementById('toggle-show');
+      const toggleHide= document.getElementById('toggle-hide');
       
       if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        toggleText.textContent = 'Hide';
+        toggleShow.style.display = 'none';
+        toggleHide.style.display = 'block';
       } else {
         passwordInput.type = 'password';
-        toggleText.textContent = 'Show';
+        toggleShow.style.display = 'block';
+        toggleHide.style.display = 'none';
       }
     }
 
+const passwordInput = document.getElementById('passwordInput');
+
+passwordInput.addEventListener('input', () => {
+  const toggleShow = document.getElementById('toggle-show');
+  const toggleHide= document.getElementById('toggle-hide');
+  
+  if (passwordInput.value.trim()) {
+    toggleShow.style.display = 'block';
+    toggleHide.style.display = 'none';
+  } else {
+    toggleShow.style.display = 'none';
+    toggleHide.style.display = 'none';
+  }
+});
 
     function showModal(message){
       const modal = document.getElementById('message-alert');
