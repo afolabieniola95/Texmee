@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+			padding: 10px;
+            align-items: center;
+			justify-content: center;
+        }
+
+        input{
+            display: flex;
+            align-items: center;
+            width: 90%; 
+            padding: 11px;
+            font-size: 13px; 
+            border-radius: 5px; 
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+			background-color: whitesmoke;
+        }
+
+        .input-container{
+            display: flex;
+            margin-bottom: 20px; 
+            width: 90%;   
+            padding: 5px;
+            height: 40px;
+            font-size: 14px; 
+            border-radius: 5px; 
+            border: 1.5px solid gray;
+            outline: none;
+            box-sizing: border-box;
+		    background-color: whitesmoke;
+        }
+
+        button {
+            background-color: black; 
+            color: white; 
+            border: none;
+            font-size: 14rpx;
+            font-weight: bold;
+            width: 60%;
+            height: 35px;
+            border-radius: 9px;
+            margin-top: 50px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: block;
+        }
+		
+	.toggle {
+      cursor: pointer;
+      font-size: 11px;
+      color: grey;
+      user-select: none;
+	  padding: 10px 5px 0px 5px;
+	  text-align: right;
+    }
+    </style>
+</head>
+<body>
+
+    
+    <div style = "padding: 10px; display: flex; align-items: center; justify-content: center;">
+      <img src = "icon/texmee-logo.png" style = "width: 70px; height: 70px;">
+      <div style = "padding: 15px 0px; font-size: 20px; color: black; font-weight: bold; text-align: left;">TexMee</div>
+
+    </div>
+
+
+     <form action="login.php" method="POST">
+	<center>
+        <div class = "input-container">
+        <input type="email" name="email" placeholder = "Email or phone" required>
+            </div><br></br>
+  </div>
+  
+      <label>
+        <div class = "input-container">
+        <input type="password" name="password" id="passwordInput" placeholder = "Password" required>
+		<div class="toggle" onclick="togglePassword()">Show</div>
+</div>
+		</label>
+        
+        </div>
+       <a href = "Forgotten_password.html" style = "text-decoration: none; color: black;">
+      <div style="text-align: center; font-size: 14px;">Forgotten password?</div>
+       </a> 
+
+            <button type="submit">Login</button>
+        </center>
+    </form>
+ 
+ <script>
+    // Toggle password visibility
+    function togglePassword() {
+      const input = document.getElementById("passwordInput");
+      const toggle = document.querySelector(".toggle");
+      if (input.type === "password") {
+        input.type = "text";
+        toggle.textContent = "Hide";
+      } else {
+        input.type = "password";
+        toggle.textContent = "Show";
+      }
+    }
+  </script>
+  
+  
+    <p style="margin-top: 30px; text-align: center; font-size: 15px;">
+	Don't have an account yet?
+	<a href="create_account.html">Sign up</a></p>
+	
+	<div style = "align-items: center; justify-content: center; display: flex; gap: 20px; padding-top: 16px;">
+	  <div style = "border-bottom: 1px solid grey; width: 100px; margin: 10px;"></div>  
+	 <div style = "font-size: 15px;">Or continue with</div>
+	 <div style = "border-bottom: 1px solid grey; width: 100px; margin: 10px;"></div>
+  </div>
+     
+   <table style = "padding: 30px; width: 100%;">
+	<tr>
+	<th>
+   <img src ="icon/chrome.png" style = "background-color: white; width: 40px; height: 40px;">
+	</th>
+
+   <th>
+	 <img src ="icon/facebook.jpeg" style = "width: 33px; height: 33px;">
+	</th>
+	</tr>
+	</table>
+
+	
+</body>
+</html>
