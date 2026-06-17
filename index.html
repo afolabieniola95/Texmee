@@ -2,118 +2,174 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-			padding: 10px;
-            align-items: center;
-			justify-content: center;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index</title>
+<style>
+  body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding-top: 30px;
+      
+}
 
-        input{
-            display: flex;
-            align-items: center;
-            width: 90%; 
-            padding: 11px;
-            font-size: 13px; 
-            border-radius: 5px; 
-            border: none;
-            outline: none;
-            box-sizing: border-box;
-			background-color: whitesmoke;
-        }
+    .input-container{
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    
+ }
 
-        .input-container{
-            display: flex;
-            margin-bottom: 20px; 
-            width: 90%;   
-            padding: 5px;
-            height: 40px;
-            font-size: 14px; 
-            border-radius: 5px; 
-            border: 1.5px solid gray;
-            outline: none;
-            box-sizing: border-box;
-		    background-color: whitesmoke;
-        }
+  .input-container input{
+      display: flex;
+      width: 90%;   
+      padding: 5px;
+      height: 40px;
+      font-size: 18px; 
+      border-radius: 5px; 
+      border: 1.5px solid gray;
+      box-sizing: border-box;
+      outline: none;
+}
 
-        button {
-            background-color: black; 
-            color: white; 
-            border: none;
-            font-size: 14rpx;
-            font-weight: bold;
-            width: 60%;
-            height: 35px;
-            border-radius: 9px;
-            margin-top: 50px;
-        }
-        .error {
-            color: red;
-            font-size: 12px;
-            margin-bottom: 10px;
-            display: block;
-        }
+  .input-container label {
+     position: absolute;
+     left: 6%;
+     top: 50%;
+     transform: translateY(-50%);
+     color: black;
+     pointer-events: none;
+     transition: 0.3s ease;
+     background: white;
+     padding: 0 4px;
+}
+
+     /* when input is focused OR has value */
+   .input-container input:focus + label,
+  .input-container input:not(:placeholder-shown) + label {
+     top: -10px;
+     left: 15px; 
+    font-size: 17px;
+    font-weight: bold;
+    color: black;
+}
+
+    button {
+      background-color: black; 
+      color: white; 
+      border: none;
+      font-size: 14rpx;
+      font-weight: bold;
+      min-width: 20%;
+      height: 35px;
+      border-radius: 9px;
+      margin-top: 50px;
+}
+   .email-error, .password-error {
+     opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    padding: 5px 20px;
+    color:red ;
+    font-size: 13px;
+}
+    .email-error.show, .password-error.show{
+      transform: scale(1.1);
+      opacity: 1;
+      
+    }
 		
 	.toggle {
+      position: absolute;
+      top: 12%;
+      right: 6%;
       cursor: pointer;
       font-size: 11px;
       color: grey;
       user-select: none;
-	  padding: 10px 5px 0px 5px;
-	  text-align: right;
-    }
-    </style>
+	    padding: 10px 5px 0px 5px;
+	    text-align: right;
+}
+  #logo{
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 50px;
+    margin-bottom: 70px;
+  }
+   .container{
+     margin: 40px 0;
+   }
+  .success-box{
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 200px;
+    min-width: 150px;
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 0 5px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    color: green;
+    text-shadow: 0 0 3px green;
+    background: white;
+    transition: 0.6s ease;
+  }
+  .success-box.show{
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  
+  }
+  
+</style>
 </head>
 <body>
 
     
-    <div style = "padding: 10px; display: flex; align-items: center; justify-content: center;">
-      <img src = "icon/texmee-logo.png" style = "width: 70px; height: 70px;">
-      <div style = "padding: 15px 0px; font-size: 20px; color: black; font-weight: bold; text-align: left;">TexMee</div>
-
-    </div>
+      <h2 id="logo">TexMee</h2>
 
 
-     <form action="login.php" method="POST">
-	<center>
+
+
+       <div class="container">
         <div class = "input-container">
-        <input type="email" name="email" placeholder = "Email or phone" required>
-            </div><br></br>
-  </div>
-  
-      <label>
-        <div class = "input-container">
-        <input type="password" name="password" id="passwordInput" placeholder = "Password" required>
-		<div class="toggle" onclick="togglePassword()">Show</div>
-</div>
-		</label>
-        
+        <input type="email" id="email" placeholder = " " required>
+        <label for="email">Email</label>
         </div>
+         <span class="email-error"></span>
+       </div>
+
+      <div class="container">
+        <div class = "input-container">
+        <input type="password" id="password"  placeholder = " " required>
+	    	<label for="password">Password</label>
+        <div class="toggle" onclick="togglePassword()">Show</div>
+        </div>
+        <span class="password-error"></span>
+      </div>
+    
        <a href = "Forgotten_password.html" style = "text-decoration: none; color: black;">
       <div style="text-align: center; font-size: 14px;">Forgotten password?</div>
        </a> 
 
-            <button type="submit">Login</button>
-        </center>
-    </form>
+     <center>
+        <button id="login">Login</button>
+     </center>
  
- <script>
-    // Toggle password visibility
-    function togglePassword() {
-      const input = document.getElementById("passwordInput");
-      const toggle = document.querySelector(".toggle");
-      if (input.type === "password") {
-        input.type = "text";
-        toggle.textContent = "Hide";
-      } else {
-        input.type = "password";
-        toggle.textContent = "Show";
-      }
-    }
-  </script>
-  
+ 
   
     <p style="margin-top: 30px; text-align: center; font-size: 15px;">
 	Don't have an account yet?
@@ -137,6 +193,92 @@
 	</tr>
 	</table>
 
-	
+<div class="success-box"></div>
+
+  <script>
+  
+    // Toggle password visibility
+    function togglePassword() {
+      const input = document.getElementById("password");
+      const toggle = document.querySelector(".toggle");
+      if (input.type === "password") {
+        input.type = "text";
+        toggle.textContent = "Hide";
+      } else {
+        input.type = "password";
+        toggle.textContent = "Show";
+      }
+    };
+
+    const email = document.getElementById('email');
+    const password =document.getElementById('password');
+  const loginBtn = document.getElementById('login');
+const errorEmail = document.querySelector('.email-error');
+    const errorPassword = document.querySelector('.password-error');
+
+    
+    loginBtn.addEventListener('click', ()=>{
+      
+      if(!email.value.trim()){
+        errorEmail.classList.add('show');
+        errorEmail.textContent = "Enter your email";
+        setTimeout(() => errorEmail.classList.remove('show'), 2000);
+        return;
+      }
+
+      if(!password.value.trim()){
+        errorPassword.classList.add('show');
+        errorPassword.textContent = "Enter your password";
+        setTimeout(() => errorPassword.classList.remove('show'), 2000);
+        return;
+      }
+
+      
+   const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+const enteredEmail = email.value.trim().toLowerCase();
+const enteredPassword = password.value;
+
+const user = accounts.find(account =>
+  account.email === enteredEmail &&
+  account.password === enteredPassword
+);
+
+
+const successBox = document.querySelector('.success-box');
+
+  if(user){
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
+    successBox.classList.add('show');
+    setTimeout(() =>{successBox.classList.remove('show');
+     }, 2000);
+    
+    setTimeout(() =>{window.location.href = 'home.html';
+    },  2000);
+
+    successBox.textContent = "Successful";
+    successBox.style.color = "green";
+    
+  }else{
+    
+    successBox.classList.add('show');
+     
+    setTimeout(() =>{successBox.classList.remove('show');
+     }, 2000);
+    
+    successBox.textContent = "Invalid email or password";
+    successBox.style.color = "red";
+    successBox.style.textShadow = "0 0 3px gainsboro";
+  }
+
+});
+
+
+    
+    
+  </script>
+
+  
 </body>
 </html>
