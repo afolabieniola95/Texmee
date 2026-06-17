@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0px;
+      padding: 0;
+      background: #fff;
+    }
+
+    .profile-photo {
+	    width: 150px; 
+   	  height: 150px;
+      border-radius: 10%;
+      border: 3px solid white;
+      object-fit: cover;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 25px;
+      font-weight: bold;
+      padding: 20px;
+    }
+ 
+ @media (max-width: 600px){
+	 .profile-photo img{
+		 width: 50px;
+		 height: 50px;
+	 }
+	 
+ }
+   
+.posts {
+  text-align: center; 
+  border-bottom: 2px solid black; 
+  font-weight: bold;
+  width: 50%;
+}
+
+.photos {
+  text-align: center; 
+}
+
+.posts-container{
+  width: 100%;
+  background-color: white;
+  text-align :center;
+  padding-top: 10px;
+  color : grey;
+  font-size : 15px;
+  font-family : sans-serif;
+
+}
+
+.photos-container{
+  display: none;
+  width: 100%;
+  background-color: white;
+  text-align :center;
+  padding-top: 10px;
+  color : grey;
+  font-size : 15px;
+  font-family : sans-serif;
+}
+
+
+.bottom-nav{
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center; 
+   padding: 18px 0px 20px 0px;
+   width: 100%;
+   gap: 60px;
+  }
+
+  .nav-item{  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    color: black;
+  }
+
+  span{
+    padding-top: 3px;
+    font-weight: normal;
+    font-size: 13px;
+  }
+  
+.edit-profile{
+  border: 1px solid gainsboro; 
+  font-size: 16px; 
+  font-family: sans-serif; 
+  padding: 5px; 
+  width: 160px; 
+  border-radius: 9px;
+  text-align: center;
+  background: whitesmoke;
+  text-shadow: 1px 1px white;
+}
+
+.verify-alert{
+  display: none; 
+  position: fixed; 
+  top: 30%; 
+  left: 25%;
+  transform: translate(50%, 50%);
+  text-align: center; 
+  font-family: sans-serif; 
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid grey; 
+  border-radius: 9px; 
+  background-color: whitesmoke;
+}
+
+  </style>
+</head>
+<body>
+
+ <div onclick="history.back()" style="margin: 7px; background-image: url('icon/backarrow.png'); background-size: cover; background-position: center; width: 20px; height: 20px;"></div>
+  
+  <!-- Profile Photo + Name -->
+   <center>
+	  <div class="profile-photo" id="profile-photo"></div>
+  </center>	
+   
+ <div class="name">
+   <div id="profile-firstName"></div>
+   <div id="profile-lastName"></div>
+   
+ </div>
+
+ <div style = "gap: 30px; padding: 20px; display: flex; align-items: center; justify-content: center;">
+  <a href="Edit-profile.php" style="text-decoration: none; color: black;">
+  <div class="edit-profile">Edit profile</div>
+   </a>
+
+   <img id = "verify" src="icon/verify.png" style="width: 20px; height: 20px;"></div>
+</div>
+
+<div class= "verify-alert">
+ <div>Coming soon...</div>
+</div>
+
+   <div class = "bottom-nav">
+     <a href="followers.html" style="text-decoration: none; color: black;">
+	 <div class = "nav-item">
+      <div>1k</div>    
+      <span>Followers</span>
+     </div></a>
+        
+   <a href="following.html" style="text-decoration: none">
+     <div class = "nav-item">
+      <div>500</div>  
+    <span>Following</span>
+      </div></a>
+      
+ 
+		 <a href = "likes-page.php" style="text-decoration: none">
+      <div class = "nav-item">
+      <div>2k</div>
+     <span>Likes</span>
+      </div></a>
+    
+</div>
+
+      
+  <table style="border-collapse: collapse; border-bottom: 1px solid grey; padding-top: 20px; width: 100%;">
+    <tr>
+    <td class="posts">Posts</td>
+
+    <td class="photos">Photos</td>
+      </tr>
+  </table>
+ 
+<div class="posts-container">No posts</div>
+
+<div class="photos-container">No photo</div>
+
+
+
+  
+<script>
+
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+  if(!currentUser){
+    window.location.href="index";
+  }
+
+  const profileFirstName = document.getElementById('profile-firstName');
+  const profileLastName = document.getElementById('profile-lastName');
+  
+  profileFirstName.textContent = currentUser.firstName;
+  profileLastName.textContent = currentUser.lastName;
+
+  const profilePhoto = document.getElementById('profile-photo');
+
+  if(profilePhoto && currentUser.profilePhoto){
+
+profilePhoto.style.backgroundImage =
+  `url('${currentUser.profilePhoto}')`;
+  }
+  
+    
+ const post =  document.querySelector('.posts');
+ const photo = document.querySelector('.photos');
+ const postContainer = document.querySelector('.posts-container');
+ const photoContainer = document.querySelector('.photos-container');
+ 
+
+ photo.addEventListener('click', ()=>{
+
+post.style.borderBottom = "1px solid black";
+post.style.fontWeight = "normal";
+
+photo.style.fontWeight = "bold";
+photo.style.borderBottom = "2px solid black";
+
+photoContainer.style.display = "block";
+postContainer.style.display = "none";
+ });
+
+ post.addEventListener('click', ()=>{
+post.style.borderBottom = "2px solid black";
+post.style.fontWeight = "bold";
+
+photo.style.fontWeight = "normal";
+photo.style.borderBottom = "1px solid black";
+
+photoContainer.style.display = "none";
+postContainer.style.display = "block";
+
+ });
+
+
+const verify = document.getElementById('verify');
+const verifyAlert = document.querySelector('.verify-alert');
+
+verify.onclick = function (){
+verifyAlert.style.display = "block";
+
+setTimeout(function(){
+ verifyAlert.style.display = "none";
+}, 2000);
+
+};
+</script>
+
+
+</body>
+</html>
+
