@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Menu</title>
+  <style>
+body {
+      margin: 40px 0 0 0;
+      font-family: sans-serif;
+    }
+
+
+.profile-info{
+     border-bottom: 1px solid gainsboro;
+     padding: 15px 0px 10px 15px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background: white;
+     box-shadow: 0px 0px 3px 1px gainsboro;
+}
+
+.header{
+      display: flex; 
+      gap: 10px;
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100%;
+      align-items: center;
+      border-bottom: 1px solid gainsboro;
+      padding: 8px; 
+      background-color: white; 
+}
+
+h3{
+     margin: 0px;
+     font-size: 16px;
+     font-family: Segoe UI;
+}
+
+.profile-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 100px;
+      border: 2px solid white;
+      background-size: cover;
+      background-position: center;
+      background-color: gainsboro;
+}
+
+.profile-name {
+      padding: 25px 10px;
+      font-size: 20px;
+      font-weight: bold;
+}
+
+	button{
+  align-items: center; 
+	justify-content: center;
+	width: 150px;
+	background-color: black; 
+	font-weight: bold;
+	font-size: 13px; 
+	color: white;
+	border-radius: 5px;
+	padding: 6px;
+	margin-top: 40px;
+	}
+
+  .menu-options{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  .options{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 16px;
+    margin-bottom: 40px;
+    color: black;
+  }
+   .close-panel{
+    display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     bottom: 0;
+     right: 0;
+     width: 100%;
+     background-color: transparent;
+   }
+
+  .switch-panel{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 400px;
+    height: 0px;
+    background-color: white;
+    transition: height 0.2s;
+   
+  }
+
+  #drag-handle{
+    width: 50px;
+    height: 10px;
+    background-color: grey;
+    border-radius: 12px;
+  }
+
+  .users-container{
+    width: 100%;
+    height: 270px;
+    padding: 10px;
+    background: white;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding-bottom: 10px;
+  }
+
+  .user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 3px 0px 3px 5px;
+    border: 1px solid gainsboro;
+    box-sizing: border-box;
+    border-radius: 9px;
+    background-color: whitesmoke;
+    margin-bottom: 20px;
+  }
+
+  .avater{
+    width: 45px;
+    height: 45px;
+    border: 1px solid gainsboro;
+    border-radius: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  h3{
+    text-align: left;
+    margin: 0;
+    font-size: 18px;
+  }
+
+
+  #active-account{
+    font-weight: bold;
+    font-size: 13px;
+    color: black;
+    padding-right: 5px;
+  }
+
+  #logout-account{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="header">
+    <img onclick="history.back()" src="icon/backarrow.png" style="width: 22px; height: 22px;">
+    <h3>Settings</h3>
+  </div>
+
+  <!-- Profile info -->
+  <div class="profile-info">
+  <div style="display: flex; align-items: center;">  
+  
+  <div class="profile-photo" id="profile-photo"></div>
+
+  <div class="profile-name">
+    <span id="userFirstName"></span>
+    <span id="userLastName"></span>
+  </div>
+    
+    </div>
+
+   <img class="switch-icon" src="icon/switch.png" style="width: 20px; height: 20px;  margin-right: 30px;">
+	 </div>
+  
+    
+   </div>
+
+  <!-- Menu options -->
+   <div class="menu-options">
+   
+    <!-- options -->
+    <div class="options">
+    <img src="icon/manage-account.png" style="width: 25px; height: 25px;">
+    <span>Manage account</span>
+  </div>
+
+  <div class="options">
+    <img src="icon/notification.png" style="width: 25px; height: 25px;">
+    <span>Nofications</span>
+  </div>
+
+    <div class="options">
+    <img src="icon/chat-page.png" style="width: 25px; height: 25px;">
+    <span>Chats</span>
+  </div>
+
+<a href="language-settings.html" style="text-decoration: none; color: black">
+  <div class="options">    
+   <img src="icon/language.png" style="width: 25px; height: 25px;">
+    <div style="padding-top: 8px;">
+   <span>Language</span>
+   <div style="font-size: 12px;">English</div>
+   </div>
+ </div></a>
+
+
+   <div class="options">    
+   <img src="icon/help.png" style="width: 25px; height: 25px;">
+    <span>Help and feedback</span>
+  </div>
+
+  
+  
+  <!-- Logout button -->
+  <center>
+    
+  <button class="logout" id="logout-btn">Log out</button>
+  
+  </center>
+
+  <div class="close-panel"></div>
+
+  <div class="switch-panel">
+   <div style="display: flex; width: 100%;  justify-content: center; padding: 10px;">
+    <div id="drag-handle"></div>
+   </div>
+
+   <div class="users-container" id="users-container"></div>
+
+
+ 
+  <!-- JavaScript -->
+ <script>
+
+
+   
+   window.addEventListener('DOMContentLoaded', () => {
+
+  const currentUser = JSON.parse(
+  localStorage.getItem('currentUser'));
+
+     
+  if (!currentUser) {
+    alert('No login users');
+    
+    window.location.href = "index.html";
+    return;
+  }
+
+const profileImage = document.getElementById('profile-photo'); 
+const userFirstName = document.getElementById('userFirstName');
+const userLastName = document.getElementById('userLastName');
+ 
+userFirstName.textContent = currentUser.firstName;
+userLastName.textContent = currentUser.lastName;
+     
+if(profileImage && currentUser.profilePhoto){
+
+profileImage.style.backgroundImage =
+  `url('${currentUser.profilePhoto}')`;
+}
+
+
+
+     
+    // Logout confirmation logic
+   function Logout() {
+      document.getElementById('closeAlert').style.display = 'block';
+      document.getElementById('openAlert').style.display = 'block';
+    
+     }
+
+const logoutBtn = document.getElementById('logout-btn');
+  
+  logoutBtn.addEventListener('click', () => {
+  
+  const confirmLogout =
+    confirm('Are you sure you want to log out?');
+
+  if (!confirmLogout) return;
+
+  localStorage.removeItem('currentUser');
+
+  window.location.href = 'index.html';
+
+});
+
+
+    
+    const switchIcon = document.querySelector('.switch-icon');
+    const switchPanel = document.querySelector('.switch-panel');
+    const closePanel  = document.querySelector('.close-panel');
+     
+     switchIcon.addEventListener('click', ()=>{
+      switchPanel.style.height = '300px';
+      switchPanel.style.borderTop = '1px solid gainsboro';
+      switchPanel.style.boxShadow = '0px 2px 4px 1px grey';
+      closePanel.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+     });
+
+     closePanel.addEventListener('click', ()=>{
+      switchPanel.style.height = '0px';
+      closePanel.style.display = 'none';
+      document.body.style.overflow = 'visible';
+     });
+     
+
+
+
+const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+const usersContainer = document.getElementById('users-container');
+
+accounts.forEach(account => {
+
+  const userDiv = document.createElement('div');
+
+  userDiv.className = 'user';
+
+  userDiv.innerHTML = `
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div class="avater"
+      style="background-image:url('${account.profilePhoto}')">
+      </div>
+
+      <div style="font-weight:bold;font-size:18px;">
+        ${account.firstName}
+        ${account.lastName}
+      </div>
+    </div>
+
+    <div style="font-size: 13px; font-weight: bold; padding-right: 8px;">
+      ${
+        account.id === currentUser.id
+        ? 'Current'
+        : 'Out'
+      }
+    </div>
+  `;
+
+  userDiv.addEventListener('click', () => {
+
+  localStorage.setItem(
+    'currentUser',
+    JSON.stringify(account)
+  );
+
+  location.reload();
+
+});
+  
+  usersContainer.appendChild(userDiv);
+
+});
+
+   });
+   
+</script>
+
+</body>
+</html>
+
+
+  
