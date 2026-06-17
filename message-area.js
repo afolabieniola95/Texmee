@@ -1,3 +1,17 @@
+
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+ if(!currentUser){
+   alert('No login users');
+   window.location.href = "index";
+ }
+  
+  const profilePhoto = document.getElementById('profile-photo');
+  
+  if(profilePhoto && currentUser.profilePhoto){
+    profilePhoto.style.backgroundImage = `url('${currentUser.profilePhoto}')`;
+  }
+  
    const all = document.querySelector('.all');
    const online = document.querySelector('.online');
    const unread = document.querySelector('.unread');
