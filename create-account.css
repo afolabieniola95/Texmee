@@ -8,20 +8,16 @@
     box-sizing: border-box;
   }
 
-  #container  {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
+.container {
+  width: 100%;
+  background-color: white;
+  pading: 25px;
+  border-radius: 15px;
   }
 
   h2, h3 {
     text-align: center;
-    color: black;
+    color: #4a4a4a;
     white-space: nowrap;
   }
 
@@ -33,13 +29,8 @@
     display: block;
   }
 
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 20px;
-}
 
-input, select {
+input,select {
     width: 100%;
     padding: 10px;
     margin: 3px 0;
@@ -48,6 +39,8 @@ input, select {
     box-sizing: border-box;
     outline: none;
     text-transform: capitalize;
+    font-size: 18px;
+    
   }  
      
 
@@ -55,6 +48,7 @@ input, select {
     width: 150px;
     background-color: black;
     color: white;
+    border: noe;
     padding: 5px;
     box-shadow: 1px 2px 1px 1px black;
     border-radius: 5px;
@@ -81,13 +75,11 @@ button:hover {
 
 .preview {
   width: 200px;
-  height: 200px;
-  border-radius: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
   margin-top: 10px;
   border: 1px solid grey;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .form-step {
@@ -131,16 +123,8 @@ button:hover {
       font-size: 11px;
       color: grey;
       user-select: none;
-	  padding: 5px 5px 0px 5px;
+	  padding: 10px 5px 0px 5px;
 	  text-align: right;
-    }
-
-    #age-display{
-      font-size: 12px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: black;
-      margin: 0px;
-      padding: 0px;
     }
 
  
