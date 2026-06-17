@@ -7,17 +7,16 @@ body {
 .media-preview{
     width: 100%;
     height: 100vh;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+    min-height: 320px;
+    overflow: hidden;
+    background: white;
+   }
 
 
-  
-  .meia-preview video{
+  .media-preview img, .media-preview video{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit: fit;
   }
 
   input[type="file"]{
@@ -58,36 +57,11 @@ span{
   font-size: 11px;
 }
 
-.post-actions{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  gap: 50px;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 0px;
-  background-color: white;
-  transition: 0.4s ease;
-}
-
-.draft-btn{
-  display: none;
-  padding: 4px 9px;   
-  width: 200px;    
-  background-color: white;  
-  color: black;  
-  font-weight: bold; 
-  font-size: 16px;  
-  border: none;  
-  border-radius: 5px; 
-  border: 1px solid black;
-  box-shadow: 1px 2px 5px gainsboro;
-}
-
 .post-btn{
-  display: none;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 4px 9px;   
   width: 200px;    
   background-color: black;  
@@ -96,39 +70,8 @@ span{
   font-size: 16px;  
   border: none;  
   border-radius: 5px; 
-  border: 1px solid black;
-  box-shadow: 1px 2px 5px gainsboro;
 }
 
-#actions-toggle{
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  width: 0px;
-  height: 0px;
-  background: whitesmoke;
-  border-radius: 100%;
-  cursor: pointer;
-  transition: 0.4s ease;
-}
-
-#btn-alert{
-  display: none;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid whitesmoke;
-  background: whitesmoke;
-  box-shadow: 1px 2px 2px gainsboro;
-  font-size: 13px;
-  width: 100px;
-  height: 15px;
-  text-align: center;
-  text-shadow: 1px 1px grey;
-  padding: 5px;
-  border-radius: 50% / 100px;
-}
 
 #text-input{
   display: none;
@@ -274,4 +217,23 @@ transition: height 0.2s ease;
 
 #trending-container, #storage-container{
   display: none;
+}
+.trigger-alert{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: gainsboro;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+  color: black;
+  transition: transform 0.3s;
+  text-shadow: 1px 1px grey;
+}
+.trigger-alert.show{
+  height: 30px;
+  padding: 10px;
 }
