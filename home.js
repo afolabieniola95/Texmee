@@ -1,11 +1,32 @@
+window.addEventListener('DOMContentLoaded', () => {
 
+  const currentUser = JSON.parse(
+  localStorage.getItem('currentUser'));
+  
+  if (!currentUser) {
+    alert('No login users');
+    
+    window.location.href = "index.html";
+    return;
+  }
+
+const profileImage = document.getElementById('profile-photo');
+
+if(profileImage && currentUser.profilePhoto){
+
+profileImage.style.backgroundImage =
+  `url('${currentUser.profilePhoto}')`;
+}
+  
 const CAPTION_LIMIT = 80;
 
 /* -------------------------
        Sample posts data (JS array)
        Replace or add items here to change posts
        ------------------------- */
-    const posts = [
+  
+  
+  const posts = [
       {
     id: 1,
     user: {
@@ -79,6 +100,8 @@ const CAPTION_LIMIT = 80;
   }
 ];
 
+
+const allPosts = JSON.parse(localStorage.getItem('allPosts')) || [];
     /* -------------------------
        Render posts into the .feed container
        ------------------------- */
@@ -193,9 +216,11 @@ const CAPTION_LIMIT = 80;
   moreBtn.className = 'post-btn';
   moreBtn.innerHTML = `<img src="icon/dots.png" style="width:28px;height:28px;">`;
   actions.appendChild(moreBtn);
-  
+ 
   footer.appendChild(actions);
 
+    
+  
   // Caption
   if (p.content.caption) {
     const captionDiv = document.createElement('div');
@@ -223,9 +248,63 @@ const CAPTION_LIMIT = 80;
     }
 
     footer.appendChild(captionDiv);
+    
   }
+  
+
+  const moreModal = document.createElement('div');
+  moreModal.className = 'more-modal';
+
+  moreBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  moreModal.classList.add('show');
+  moreModal.innerHTML = `
+  <div style="display: flex; flex-direction: column; gap: 50px; font-size: 18px;
+  font-weight: bold; padding: 50px 30px; color: black;">
+  <div>Save</div>
+  <div>Report</div>
+  <div>Turn notification on</div>
+  <div id="delete-post">Delete</div>
+  </div>`;
+  document.body.style.overflow = "hidden";
+  
+  moreModal.addEventListener('click', (e) => {
+
+  if(e.target.id === 'delete-post'){
+
+    const confirmDelete =
+      confirm('Do you want to delete this post?');
+
+    if(confirmDelete){
+      let allPosts = JSON.parse(localStorage.getItem('allPosts')) || [];
+      allPosts = allPosts.filter(post => post.id !== p.id);
+      localStorage.setItem('allPosts', JSON.stringify(allPosts));
+  
+      
+      card.remove();
+      moreModal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+});
+
+});
+
+  moreModal.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+
+  document.addEventListener('click', () => {
+   moreModal.classList.remove('show');
+   document.body.style.overflow = "auto";
+});
+
+     card.appendChild(moreModal);
      card.appendChild(footer);
-     
+    
+    
+    
      const template = document.getElementById('comment-template');
      const clone = template.content.cloneNode(true);
      
@@ -264,20 +343,17 @@ backDrop.addEventListener('click', () => {
     const value = input.value.trim();
     if (!value) return;
 
-    const commentData = {
-      user: {
-        name: 'Afolabi Boluwatife', 
-        avater: 'image/image1.jpg',
-        likeIcon: 'icon/like.png',
-        likedIcon: 'icon/liked.png',
-        commentReply: 'Reply'
-      },
-
-      text: value,
-
-      createdAt: Date.now()
-    };
-     
+  const commentData = {
+  user: {
+    name: `${currentUser.firstName} ${currentUser.lastName}`,
+    avatar: currentUser.profilePhoto,
+    likeIcon: 'icon/like.png',
+    likedIcon: 'icon/liked.png',
+    commentReply: 'Reply'
+  },
+  text: value,
+  createdAt: Date.now()
+};
     
 
     renderComment(commentData, content); //pass the correct container
@@ -296,7 +372,25 @@ backDrop.addEventListener('click', () => {
     }
 
     // INITIAL render
-    renderFeed();
+    const mergedPosts = [
+  ...allPosts,
+  ...posts
+];
+
+feedEl.innerHTML = '';
+
+mergedPosts.forEach(post => {
+  feedEl.appendChild(
+    createPostCard(post)
+  );
+});
+
+
+  
+
+    const commentAvatar = document.getElementById('comment-avatar');
+    commentAvatar.style.backgroundImage = `url('${currentUser.profilePhoto}')`;
+
 
     function renderComment(data, container){
 
@@ -309,7 +403,7 @@ backDrop.addEventListener('click', () => {
 
       const avater = document.createElement('div');
       avater.className = 'comment-avater';
-      avater.style.backgroundImage = `url('${data.user.avater}')`;
+      avater.style.backgroundImage = `url('${data.user.avatar}')`;
 
       const  body = document.createElement('div');
       body.className = 'comment-body';
@@ -401,7 +495,7 @@ backDrop.addEventListener('click', () => {
     }, 60000);
 
 
-     const reactTab = document.getElementById('react-tab');
+     const reactTab = document.getElementById('react-tab').cloneNode(true);
       
       likeIcon.addEventListener('mousedown', ()=>{
      holdTimer = setTimeout(()=>{
@@ -421,7 +515,7 @@ backDrop.addEventListener('click', () => {
  });
 
     
-      reactTab.addEventListener('click', ()=>{
+      reactTab.addEventListener('click', (e)=>{
       const react = e.target.dataset.react;
       if(!react)return;
       console.log('Reacted with', react);
@@ -533,30 +627,4 @@ document.getElementById('like').style.display = "none";
  }
 
 
- document.addEventListener("DOMContentLoaded", function(){
-  const postBtn = document.getElementById('postBtn');
-  const postInput = document.getElementById('postInput');
-
-  postBtn.addEventListener('click', ()=>{
-    postInput.click();
-  });
-
-  postInput.addEventListener('change', function(){
-    if(this.files.length === 0) return;
-    const reader = new FileReader();
-    reader.onload = function(e){
-      sessionStorage.setItem("postImage", e.target.result);
-      window.location.href = "create-posts.php";
-    };
-
-    reader.readAsDataURL(this.files[0]);
-  });
-
-
- });
- 
- 
- 
-
-  
-
+});
