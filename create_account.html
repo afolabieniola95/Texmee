@@ -6,10 +6,9 @@
   <link rel="stylesheet" href="create-account.css">
 </head>
 <body>
-
-  <div id="container">
+  <div class="container">
   
-    <form action="sign_up.php" method="POST" enctype="multipart/form-data" id="accountForm" autocomplete="on">
+    <form id="accountForm" autocomplete="on">
 
       <!-- Step 1 -->
       <div class="form-step active" id="step1">
@@ -18,16 +17,15 @@
       <img onclick="history.back()"  src="icon/backarrow.png" style="width: 20px; height: 20px;">
        <h3>What's your name?</h3>
 </div>
-
         <label for="firstName">First Name</label>
         <div class="input-wrapper">
-        <input type="text" id="firstName" name="first_name" autocomplete="given-name" autocapitalize="words" required>
-         <span class="error-text"></span>
+        <input type="text" id="firstName"  autocomplete="given-name" autocapitalize="words" required>
+        <span class="error-text"></span>
          </div>
          
-        <label for="lastName">Last Name</label>
+      <label for="lastName">Last Name</label>
       <div class="input-wrapper">
-        <input type="text" id="lastName" name="last_name" autocomplete="family-name" autocapitalize="words" required>
+        <input type="text" id="lastName" autocomplete="family-name" autocapitalize="words" required>
         <span class="error-text"></span>
         </div>
         
@@ -46,32 +44,12 @@
 
     
        <div class="input-wrapper">
-        <label for="day">Day</label>
-        <select id="day" name="day" disabled>
-          <option value="">Select Days</option>
-        </select>
-        <span class="error-text"></span>
-</div>
 
-        <div class="input-wrapper">
-          <label for="month">Month</label>
-        <select id="month" name="month" disabled>
-          <option value="">Select Months</option>
-        </select>
-        <span class="error-text"></span>
-</div>
-
-        <div class="input-wrapper">
-          <label for="year">Year</label>
-        <select id="year" name="year">
-          <option value="">Select Years</option>
-        </select>
-        <span class="error-text"></span>
-
-        <p id="age-display"></p>
-</div>
-      
-             
+        <input type="date" id="dob">
+       <span class="error-text"></span>
+         </div>
+         
+         
         <div class="btn-group">
           <button type="button" class="next-btn">Next</button>
         </div>
@@ -177,7 +155,7 @@
 
         <label for="profilePic">
          <div style="display: flex; align-items: center; justify-content: center;">
-        <div id="profilePreview" class="preview"></div>
+        <img id="profilePreview" class="preview">
          <input type="file" id="profilePic" name="profile_pic" accept="image/*" style="display: none;">
          </div>
         </label>
